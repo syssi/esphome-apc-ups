@@ -1,0 +1,23 @@
+[14:29:45][D][uart_debug:158]: >>> "Y"
+[14:29:45][D][uart_debug:158]: <<< "SM\r\n"
+[14:29:46][I][main:160]: Cause of last transfer to battery
+[14:29:46][D][uart_debug:158]: >>> "G"
+[14:29:46][D][uart_debug:158]: <<< "S\r\n"
+[14:29:47][I][main:170]: Status flags
+[14:29:47][D][uart_debug:158]: >>> "Q"
+[14:29:47][D][uart_debug:158]: <<< "08\r\n"
+[14:29:48][I][main:180]: Protocol info
+[14:29:48][D][uart_debug:158]: >>> "a"
+[14:29:48][D][uart_debug:158]: <<< ".!$?.3\r\n"
+[14:29:49][I][main:190]: Firmware revision
+[14:29:49][D][uart_debug:158]: >>> "b"
+[14:29:49][D][uart_debug:158]: <<< "42.J.I\r\n"
+[14:29:50][I][main:200]: Serial number
+[14:29:50][D][uart_debug:158]: >>> "n"
+[14:29:50][D][uart_debug:158]: <<< "GS9803130582\x00\x00\r\n"
+[14:29:51][I][main:210]: Copyright notice
+[14:29:51][D][uart_debug:158]: >>> "y"
+[14:29:51][D][uart_debug:158]: <<< "(C) APCC\r\n"
+[14:29:52][I][main:220]: Line quality
+[14:29:52][D][uart_debug:158]: >>> "9"
+[14:29:52][D][uart_debug:158]: <<< "FF\r\n"

@@ -1,0 +1,110 @@
+[14:06:24][D][uart_debug:158]: >>> "Y"
+[14:06:24][D][uart_debug:158]: <<< "SM\r\n"
+[14:06:25][I][main:1062]: Battery voltage
+[14:06:25][D][uart_debug:158]: >>> "B"
+[14:06:25][D][uart_debug:158]: <<< "13.61\r\n"
+[14:06:26][I][main:1072]: Internal temperature
+[14:06:26][D][uart_debug:158]: >>> "C"
+[14:06:26][D][uart_debug:158]: <<< "NA\r\n"
+[14:06:27][I][main:1082]: Automatic self test interval
+[14:06:27][D][uart_debug:158]: >>> "E"
+[14:06:27][D][uart_debug:158]: <<< "336\r\n"
+[14:06:28][I][main:1092]: Line frequency
+[14:06:28][D][uart_debug:158]: >>> "F"
+[14:06:28][D][uart_debug:158]: <<< "50.00\r\n"
+[14:06:29][I][main:1102]: Cause of last transfer to battery
+[14:06:29][D][uart_debug:158]: >>> "G"
+[14:06:29][D][uart_debug:158]: <<< "S\r\n"
+[14:06:30][I][main:1112]: Input line voltage
+[14:06:30][D][uart_debug:158]: >>> "L"
+[14:06:30][D][uart_debug:158]: <<< "231.8\r\n"
+[14:06:31][I][main:1122]: Maximum line voltage
+[14:06:31][D][uart_debug:158]: >>> "M"
+[14:06:31][D][uart_debug:158]: <<< "233.2\r\n"
+[14:06:32][I][main:1132]: Minimum line voltage
+[14:06:32][D][uart_debug:158]: >>> "N"
+[14:06:32][D][uart_debug:158]: <<< "231.8\r\n"
+[14:06:33][I][main:1142]: Output voltage
+[14:06:33][D][uart_debug:158]: >>> "O"
+[14:06:33][D][uart_debug:158]: <<< "231.8\r\n"
+[14:06:34][I][main:1152]: Power load in %
+[14:06:34][D][uart_debug:158]: >>> "P"
+[14:06:34][D][uart_debug:158]: <<< "009.1\r\n"
+[14:06:35][I][main:1162]: Status flags
+[14:06:35][D][uart_debug:158]: >>> "Q"
+[14:06:35][D][uart_debug:158]: <<< "08\r\n"
+[14:06:36][I][main:1172]: Old firmware version
+[14:06:36][D][uart_debug:158]: >>> "V"
+[14:06:36][D][uart_debug:158]: <<< "DWI\r\n"
+[14:06:37][I][main:1182]: Protocol info
+[14:06:37][D][uart_debug:158]: >>> "a"
+[14:06:37][D][uart_debug:158]: <<< "3.!$%+?=#|.\x01\x0E\x1A\')+-89@ABDEFGKLMNOPQRSUVWXYZabcdefgjklmnopqrsuxyz~\r\n"
+[14:06:38][I][main:1192]: Firmware revision
+[14:06:38][D][uart_debug:158]: >>> "b"
+[14:06:38][D][uart_debug:158]: <<< "21.3.I\r\n"
+[14:06:39][I][main:1202]: UPS local id
+[14:06:39][D][uart_debug:158]: >>> "c"
+[14:06:39][D][uart_debug:158]: <<< "UPS_IDEN\r\n"
+[14:06:40][I][main:1212]: Return threshold
+[14:06:40][D][uart_debug:158]: >>> "e"
+[14:06:40][D][uart_debug:158]: <<< "00\r\n"
+[14:06:41][I][main:1222]: Battery level
+[14:06:41][D][uart_debug:158]: >>> "f"
+[14:06:41][D][uart_debug:158]: <<< "100.0\r\n"
+[14:06:42][I][main:1232]: Nominal battery voltage
+[14:06:42][D][uart_debug:158]: >>> "g"
+[14:06:42][D][uart_debug:158]: <<< "012\r\n"
+[14:06:43][I][main:1242]: Measure-UPS ambient humidity
+[14:06:43][D][uart_debug:158]: >>> "h"
+[14:06:43][D][uart_debug:158]: <<< "NA\r\n"
+[14:06:44][I][main:1252]: Measure-UPS dry contacts
+[14:06:44][D][uart_debug:158]: >>> "i"
+[14:06:44][D][uart_debug:158]: <<< "NA\r\n"
+[14:06:45][I][main:1262]: Estimated runtime
+[14:06:45][D][uart_debug:158]: >>> "j"
+[14:06:45][D][uart_debug:158]: <<< "0042:\r\n"
+[14:06:46][I][main:1272]: Alarm delay
+[14:06:46][D][uart_debug:158]: >>> "k"
+[14:06:46][D][uart_debug:158]: <<< "0\r\n"
+[14:06:47][I][main:1282]: Low transfer voltage
+[14:06:47][D][uart_debug:158]: >>> "l"
+[14:06:47][D][uart_debug:158]: <<< "208\r\n"
+[14:06:48][I][main:1292]: Manufacture date
+[14:06:48][D][uart_debug:158]: >>> "m"
+[14:06:48][D][uart_debug:158]: <<< "11/17/98\r\n"
+[14:06:49][I][main:1302]: Serial number
+[14:06:49][D][uart_debug:158]: >>> "n"
+[14:06:49][D][uart_debug:158]: <<< "NS9847001053\x00\x00\r\n"
+[14:06:50][I][main:1312]: Nominal Output Voltage
+[14:06:50][D][uart_debug:158]: >>> "o"
+[14:06:50][D][uart_debug:158]: <<< "230\r\n"
+[14:06:51][I][main:1322]: Shutdown grace delay
+[14:06:51][D][uart_debug:158]: >>> "p"
+[14:06:51][D][uart_debug:158]: <<< "020\r\n"
+[14:06:52][I][main:1332]: Low battery warning
+[14:06:52][D][uart_debug:158]: >>> "q"
+[14:06:52][D][uart_debug:158]: <<< "02\r\n"
+[14:06:53][I][main:1342]: Wakeup delay
+[14:06:53][D][uart_debug:158]: >>> "r"
+[14:06:53][D][uart_debug:158]: <<< "000\r\n"
+[14:06:54][I][main:1352]: Sensitivity
+[14:06:54][D][uart_debug:158]: >>> "s"
+[14:06:54][D][uart_debug:158]: <<< "H\r\n"
+[14:06:55][I][main:1362]: Measure-UPS ambient temperature
+[14:06:55][D][uart_debug:158]: >>> "t"
+[14:06:55][D][uart_debug:158]: <<< "NA\r\n"
+[14:06:56][I][main:1372]: Upper transfer voltage
+[14:06:56][D][uart_debug:158]: >>> "u"
+[14:06:56][D][uart_debug:158]: <<< "253\r\n"
+[14:06:57][I][main:1382]: Measure-UPS firmware
+[14:06:57][D][uart_debug:158]: >>> "v"
+[14:06:57][D][uart_debug:158]: <<< "NA\r\n"
+[14:06:58][I][main:1392]: Last battery change date
+[14:06:58][D][uart_debug:158]: >>> "x"
+[14:06:58][D][uart_debug:158]: <<< "11/17/98\r\n"
+[14:06:59][I][main:1402]: Copyright notice
+[14:06:59][D][uart_debug:158]: >>> "y"
+[14:06:59][D][uart_debug:158]: <<< "(C) APCC\r\n"
+[14:07:00][I][main:1412]: Line quality
+[14:07:00][D][uart_debug:158]: >>> "9"
+[14:07:00][D][uart_debug:158]: <<< "FF\r\n"

@@ -1,0 +1,269 @@
+   0.000000	debug level is '12'
+   0.000443	send_to_all: SETINFO device.type "ups"
+   0.000450	send_to_all: SETINFO driver.version "2.7.4"
+   0.000453	send_to_all: SETINFO driver.version.internal "2.1"
+   0.000455	send_to_all: SETINFO driver.name "apcsmart-old"
+   1.188207	send_to_all: SETINFO ups.mfr "APC"
+   1.188215	Attempting firmware lookup using command 'V'
+   1.258377	Firmware: [DWI]
+   1.258386	Not found in table - trying normal method
+   1.258389	APC - Attempting to find command set
+   1.948304	APC - Parsing out command set
+   1.948313	UPS supports variable [ups.model]
+   1.948316	poll_data: ups.model
+   2.148631	send_to_all: SETINFO ups.model "SMART-UPS 420   "
+   2.148640	send_to_all: DATAOK
+   2.148643	UPS supports command [load.on]
+   2.148645	send_to_all: ADDCMD load.on
+   2.148648	protocol_verify: 0x1a unrecognized
+   2.148650	protocol_verify: 0x27 ['] unrecognized
+   2.148653	protocol_verify: 0x29 [)] unrecognized
+   2.148655	protocol_verify: 0x2d [-] unrecognized
+   2.148657	protocol_verify: 0x38 [8] unrecognized
+   2.148659	UPS supports variable [input.quality]
+   2.148661	poll_data: input.quality
+   2.208595	send_to_all: SETINFO input.quality "FF"
+   2.208601	UPS supports command [shutdown.return.grace]
+   2.208604	send_to_all: ADDCMD shutdown.return.grace
+   2.208606	UPS supports command [test.panel.start]
+   2.208608	send_to_all: ADDCMD test.panel.start
+   2.208611	UPS supports variable [battery.voltage]
+   2.208613	poll_data: battery.voltage
+   2.308575	send_to_all: SETINFO battery.voltage "13.61"
+   2.308585	UPS supports command [calibrate.start]
+   2.308588	send_to_all: ADDCMD calibrate.start
+   2.308590	UPS supports command [calibrate.stop]
+   2.308592	send_to_all: ADDCMD calibrate.stop
+   2.308594	UPS supports variable [ups.test.interval]
+   2.308596	poll_data: ups.test.interval
+   2.378327	send_to_all: SETINFO ups.test.interval "1209600"
+   2.378335	UPS supports variable [input.frequency]
+   2.378337	poll_data: input.frequency
+   2.478712	send_to_all: SETINFO input.frequency "50.00"
+   2.478721	UPS supports variable [input.transfer.reason]
+   2.478723	poll_data: input.transfer.reason
+   2.528455	send_to_all: SETINFO input.transfer.reason "simulated power failure or UPS test"
+   2.528464	UPS supports command [shutdown.stayoff]
+   2.528466	send_to_all: ADDCMD shutdown.stayoff
+   2.528469	UPS supports variable [input.voltage]
+   2.528471	poll_data: input.voltage
+   2.628438	send_to_all: SETINFO input.voltage "228.9"
+   2.628447	UPS supports variable [input.voltage.maximum]
+   2.628449	poll_data: input.voltage.maximum
+   2.728362	send_to_all: SETINFO input.voltage.maximum "228.9"
+   2.728369	UPS supports variable [input.voltage.minimum]
+   2.728371	poll_data: input.voltage.minimum
+   2.828729	send_to_all: SETINFO input.voltage.minimum "227.5"
+   2.828738	UPS supports variable [output.voltage]
+   2.828740	poll_data: output.voltage
+   2.928686	send_to_all: SETINFO output.voltage "228.9"
+   2.928695	UPS supports variable [ups.load]
+   2.928698	poll_data: ups.load
+   3.028647	send_to_all: SETINFO ups.load "000.0"
+   3.028655	protocol_verify: 0x51 [Q] unrecognized
+   3.028658	protocol_verify: 0x52 [R] unrecognized
+   3.028660	UPS supports command [shutdown.return]
+   3.028663	send_to_all: ADDCMD shutdown.return
+   3.028665	UPS supports command [test.failure.start]
+   3.028667	send_to_all: ADDCMD test.failure.start
+   3.028669	UPS supports variable [ups.firmware.old]
+   3.028671	poll_data: ups.firmware.old
+   3.098449	send_to_all: SETINFO ups.firmware.old "DWI"
+   3.098458	UPS supports command [test.battery.start]
+   3.098483	send_to_all: ADDCMD test.battery.start
+   3.098485	UPS supports command [test.battery.stop]
+   3.098487	send_to_all: ADDCMD test.battery.stop
+   3.098489	UPS supports variable [ups.test.result]
+   3.098491	poll_data: ups.test.result
+   3.158781	send_to_all: SETINFO ups.test.result "OK"
+   3.158790	protocol_verify: 0x59 [Y] unrecognized
+   3.158792	UPS supports command [load.off]
+   3.158795	send_to_all: ADDCMD load.off
+   3.158797	protocol_verify: 0x61 [a] unrecognized
+   3.158799	UPS supports variable [ups.firmware]
+   3.158806	poll_data: ups.firmware
+   3.238658	send_to_all: SETINFO ups.firmware "21.3.I"
+   3.238666	UPS supports variable [ups.id]
+   3.238669	poll_data: ups.id
+   3.358705	send_to_all: SETINFO ups.id "UPS_IDEN"
+   3.358721	send_to_all: SETFLAGS ups.id RW STRING
+   3.358723	send_to_all: SETAUX ups.id 8
+   3.358726	protocol_verify: 0x64 [d] unrecognized
+   3.358729	UPS supports variable [battery.charge.restart]
+   3.358731	poll_data: battery.charge.restart
+   3.418687	send_to_all: SETINFO battery.charge.restart "00"
+   3.418695	UPS supports variable [battery.charge]
+   3.418698	poll_data: battery.charge
+   3.518629	send_to_all: SETINFO battery.charge "066.0"
+   3.518637	UPS supports variable [battery.voltage.nominal]
+   3.518639	poll_data: battery.voltage.nominal
+   3.588816	send_to_all: SETINFO battery.voltage.nominal "012"
+   3.588823	UPS supports variable [battery.runtime]
+   3.588825	poll_data: battery.runtime
+   3.688812	send_to_all: SETINFO battery.runtime "5100"
+   3.688819	UPS supports variable [battery.alarm.threshold]
+   3.688822	poll_data: battery.alarm.threshold
+   3.738564	send_to_all: SETINFO battery.alarm.threshold "0"
+   3.738571	UPS supports variable [input.transfer.low]
+   3.738574	poll_data: input.transfer.low
+   3.808731	send_to_all: SETINFO input.transfer.low "208"
+   3.808740	UPS supports variable [ups.mfr.date]
+   3.808742	poll_data: ups.mfr.date
+   3.928683	send_to_all: SETINFO ups.mfr.date "11/17/98"
+   3.928691	UPS supports variable [ups.serial]
+   3.928693	poll_data: ups.serial
+   4.088929	send_to_all: SETINFO ups.serial "NS9847001053"
+   4.088938	UPS supports variable [output.voltage.nominal]
+   4.088941	poll_data: output.voltage.nominal
+   4.158770	send_to_all: SETINFO output.voltage.nominal "230"
+   4.158779	UPS supports variable [ups.delay.shutdown]
+   4.158781	poll_data: ups.delay.shutdown
+   4.228959	send_to_all: SETINFO ups.delay.shutdown "020"
+   4.228966	UPS supports variable [battery.runtime.low]
+   4.228969	poll_data: battery.runtime.low
+   4.288946	send_to_all: SETINFO battery.runtime.low "120"
+   4.288953	UPS supports variable [ups.delay.start]
+   4.288955	poll_data: ups.delay.start
+   4.358696	send_to_all: SETINFO ups.delay.start "000"
+   4.358705	UPS supports variable [input.sensitivity]
+   4.358707	poll_data: input.sensitivity
+   4.408894	send_to_all: SETINFO input.sensitivity "H"
+   4.408902	UPS supports variable [input.transfer.high]
+   4.408904	poll_data: input.transfer.high
+   4.479078	send_to_all: SETINFO input.transfer.high "253"
+   4.479086	UPS supports variable [battery.date]
+   4.479088	poll_data: battery.date
+   4.599014	send_to_all: SETINFO battery.date "11/17/98"
+   4.599024	send_to_all: SETFLAGS battery.date RW STRING
+   4.599026	send_to_all: SETAUX battery.date 8
+   4.599029	protocol_verify: 0x79 [y] unrecognized
+   4.599031	protocol_verify: 0x7a [z] unrecognized
+   4.599033	protocol_verify: 0x7f unrecognized
+   4.599035	APC - About to get capabilities string
+   6.679277	Supported capability: 75 (I) - input.transfer.high
+   6.679288	send_to_all: SETFLAGS input.transfer.high RW
+   6.679293	send_to_all: ADDENUM input.transfer.high "253"
+   6.679296	send_to_all: ADDENUM input.transfer.high "257"
+   6.679299	send_to_all: ADDENUM input.transfer.high "261"
+   6.679302	send_to_all: ADDENUM input.transfer.high "265"
+   6.679304	Supported capability: 6c (I) - input.transfer.low
+   6.679307	send_to_all: SETFLAGS input.transfer.low RW
+   6.679309	send_to_all: ADDENUM input.transfer.low "208"
+   6.679312	send_to_all: ADDENUM input.transfer.low "204"
+   6.679315	send_to_all: ADDENUM input.transfer.low "200"
+   6.679317	send_to_all: ADDENUM input.transfer.low "196"
+   6.679320	Supported capability: 65 (4) - battery.charge.restart
+   6.679322	send_to_all: SETFLAGS battery.charge.restart RW
+   6.679325	send_to_all: ADDENUM battery.charge.restart "00"
+   6.679328	send_to_all: ADDENUM battery.charge.restart "15"
+   6.679330	send_to_all: ADDENUM battery.charge.restart "50"
+   6.679333	send_to_all: ADDENUM battery.charge.restart "90"
+   6.679335	Supported capability: 6f (I) - output.voltage.nominal
+   6.679341	send_to_all: SETFLAGS output.voltage.nominal RW
+   6.679345	send_to_all: ADDENUM output.voltage.nominal "230"
+   6.679347	Supported capability: 73 (4) - input.sensitivity
+   6.679350	send_to_all: SETFLAGS input.sensitivity RW
+   6.679353	send_to_all: ADDENUM input.sensitivity "H"
+   6.679355	send_to_all: ADDENUM input.sensitivity "M"
+   6.679358	send_to_all: ADDENUM input.sensitivity "L"
+   6.679360	Supported capability: 71 (4) - battery.runtime.low
+   6.679363	send_to_all: SETFLAGS battery.runtime.low RW
+   6.679366	send_to_all: ADDENUM battery.runtime.low "120"
+   6.679369	send_to_all: ADDENUM battery.runtime.low "300"
+   6.679371	send_to_all: ADDENUM battery.runtime.low "420"
+   6.679374	send_to_all: ADDENUM battery.runtime.low "600"
+   6.679376	Supported capability: 70 (4) - ups.delay.shutdown
+   6.679378	send_to_all: SETFLAGS ups.delay.shutdown RW
+   6.679381	send_to_all: ADDENUM ups.delay.shutdown "020"
+   6.679384	send_to_all: ADDENUM ups.delay.shutdown "180"
+   6.679386	send_to_all: ADDENUM ups.delay.shutdown "300"
+   6.679389	send_to_all: ADDENUM ups.delay.shutdown "600"
+   6.679391	Supported capability: 6b (4) - battery.alarm.threshold
+   6.679393	send_to_all: SETFLAGS battery.alarm.threshold RW
+   6.679396	send_to_all: ADDENUM battery.alarm.threshold "0"
+   6.679398	send_to_all: ADDENUM battery.alarm.threshold "T"
+   6.679401	send_to_all: ADDENUM battery.alarm.threshold "L"
+   6.679403	send_to_all: ADDENUM battery.alarm.threshold "N"
+   6.679405	Supported capability: 72 (4) - ups.delay.start
+   6.679407	send_to_all: SETFLAGS ups.delay.start RW
+   6.679410	send_to_all: ADDENUM ups.delay.start "000"
+   6.679412	send_to_all: ADDENUM ups.delay.start "060"
+   6.679415	send_to_all: ADDENUM ups.delay.start "180"
+   6.679417	send_to_all: ADDENUM ups.delay.start "300"
+   6.679419	Supported capability: 45 (4) - ups.test.interval
+   6.679422	send_to_all: SETFLAGS ups.test.interval RW
+   6.679425	send_to_all: ADDENUM ups.test.interval "1209600"
+   6.679427	send_to_all: ADDENUM ups.test.interval "604800"
+   6.679430	send_to_all: ADDENUM ups.test.interval "0"
+   6.679432	APC - UPS capabilities determined
+   6.679435	Detected SMART-UPS 420    [NS9847001053] on /dev/ttyS2
+   6.679437	update_status
+   6.739312	send_to_all: SETINFO ups.status "OL"
+   6.739318	update_info_all: starting
+   6.739321	poll_data: ups.firmware.old
+   6.809118	poll_data: ups.firmware
+   6.889331	poll_data: ups.model
+   7.089337	poll_data: ups.serial
+   7.249197	poll_data: ups.mfr.date
+   7.369269	poll_data: ups.load
+   7.469221	poll_data: ups.test.interval
+   7.539380	poll_data: ups.test.result
+   7.599353	poll_data: ups.delay.start
+   7.669132	poll_data: ups.delay.shutdown
+   7.739299	poll_data: ups.id
+   7.859248	poll_data: input.voltage
+   7.959202	poll_data: input.frequency
+   8.059193	poll_data: input.sensitivity
+   8.109354	poll_data: input.quality
+   8.169332	poll_data: input.transfer.low
+   8.239111	poll_data: input.transfer.high
+   8.309282	poll_data: input.transfer.reason
+   8.359453	poll_data: input.voltage.maximum
+   8.459421	poll_data: input.voltage.minimum
+   8.559383	poll_data: output.voltage
+   8.659351	poll_data: output.voltage.nominal
+   8.729097	poll_data: battery.date
+   8.849458	poll_data: battery.charge
+   8.949445	poll_data: battery.charge.restart
+   9.009413	poll_data: battery.voltage
+   9.109351	poll_data: battery.voltage.nominal
+   9.179126	poll_data: battery.runtime
+   9.279493	poll_data: battery.runtime.low
+   9.339454	poll_data: battery.alarm.threshold
+   9.389238	update_info_all: done
+   9.389274	dstate_init: sock /run/nut/apcsmart-old-apc open on fd 5
+   9.389284	send_to_all: SETINFO driver.parameter.pollinterval "2"
+   9.389287	send_to_all: SETINFO driver.parameter.synchronous "no"
+   9.389289	send_to_all: SETINFO device.mfr "APC"
+   9.389292	send_to_all: SETINFO device.model "SMART-UPS 420   "
+   9.389295	send_to_all: SETINFO device.serial "NS9847001053"
+   9.389297	update_status
+   9.449223	update_info_normal: starting
+   9.449231	poll_data: ups.load
+   9.549168	poll_data: ups.test.result
+   9.609128	poll_data: input.voltage
+   9.709527	poll_data: input.frequency
+   9.809482	poll_data: input.quality
+   9.869454	poll_data: input.transfer.reason
+   9.919202	poll_data: input.voltage.maximum
+  10.019185	poll_data: input.voltage.minimum
+  10.119126	poll_data: output.voltage
+  10.219474	poll_data: battery.charge
+  10.319438	poll_data: battery.voltage
+  10.419397	poll_data: battery.runtime
+  10.519358	update_info_normal: done
+  11.390208	update_status
+  11.449177	update_info_normal: starting
+  11.449186	poll_data: ups.load
+  11.549530	poll_data: ups.test.result
+  11.609527	poll_data: input.voltage
+  11.709497	poll_data: input.frequency
+  11.809410	poll_data: input.quality
+  11.869375	poll_data: input.transfer.reason
+  11.919145	poll_data: input.voltage.maximum
+  12.019160	poll_data: input.voltage.minimum
+  12.119519	poll_data: output.voltage
+  12.219467	poll_data: battery.charge
+  12.319432	poll_data: battery.voltage
+  12.419376	poll_data: battery.runtime
+  12.519344	update_info_normal: done
