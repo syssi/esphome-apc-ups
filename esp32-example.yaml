@@ -57,8 +57,22 @@ apc_ups:
 binary_sensor:
   - platform: apc_ups
     apc_ups_id: ups0
-#    smart_mode:
-#      name: "${name} smart mode"
+    runtime_calibration:
+      name: "${name} runtime calibration"
+    smart_trim:
+      name: "${name} smart trim"
+    smart_boost:
+      name: "${name} smart boost"
+    on_line:
+      name: "${name} on line"
+    on_battery:
+      name: "${name} on battery"
+    output_overloaded:
+      name: "${name} output overloaded"
+    battery_low:
+      name: "${name} battery low"
+    replace_battery:
+      name: "${name} replace battery"
 
 sensor:
   - platform: apc_ups

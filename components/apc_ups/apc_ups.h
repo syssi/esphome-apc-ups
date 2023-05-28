@@ -28,7 +28,7 @@ enum ENUMPollingCommand {
   POLLING_N = 13,        // Minimum line voltage @TODO
   POLLING_O = 14,        // Output voltage
   POLLING_P = 15,        // Power load in %
-  POLLING_Q = 16,        // Status flags @TODO
+  POLLING_Q = 16,        // Status flags
   POLLING_R = 17,        // Turn dumb @TODO
   POLLING_S = 18,        // Soft shutdown @TODO
   POLLING_U = 19,        // Simulate power failure @TODO
@@ -87,15 +87,17 @@ struct PollingCommand {
 #define APC_UPS_SENSOR(name, ident, polling_command, value_type) \
   APC_UPS_VALUED_ENTITY_(sensor::Sensor, name, ident, polling_command, value_type)
 #define APC_UPS_SWITCH(name, polling_command) APC_UPS_ENTITY_(switch_::Switch, name, ident, polling_command)
-#define APC_UPS_BINARY_SENSOR(name, ident, polling_command, value_type) \
+#define APC_UPS_VALUED_BINARY_SENSOR(name, ident, polling_command, value_type) \
   APC_UPS_VALUED_ENTITY_(binary_sensor::BinarySensor, name, ident, polling_command, value_type)
+#define APC_UPS_BINARY_SENSOR(name, ident, polling_command) \
+  APC_UPS_ENTITY_(binary_sensor::BinarySensor, name, ident, polling_command)
 #define APC_UPS_VALUED_TEXT_SENSOR(name, ident, polling_command, value_type) \
   APC_UPS_VALUED_ENTITY_(text_sensor::TextSensor, name, ident, polling_command, value_type)
 #define APC_UPS_TEXT_SENSOR(name, polling_command) \
   APC_UPS_ENTITY_(text_sensor::TextSensor, name, ident, polling_command)
 
 class ApcUps : public uart::UARTDevice, public PollingComponent {
-  APC_UPS_BINARY_SENSOR(smart_mode, Y, Y, bool)
+  APC_UPS_VALUED_BINARY_SENSOR(smart_mode, Y, Y, bool)
   APC_UPS_SENSOR(battery_voltage, B, B, float)
   APC_UPS_SENSOR(grid_frequency, F, F, float)
   APC_UPS_VALUED_TEXT_SENSOR(cause_of_last_transfer, G, G, std::string)
@@ -103,6 +105,14 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   APC_UPS_SENSOR(ac_output_voltage, O, O, float)
   APC_UPS_SENSOR(ac_output_load, P, P, float)
   APC_UPS_SENSOR(status_bitmask, Q, Q, int)
+  APC_UPS_BINARY_SENSOR(runtime_calibration, Q, Q)
+  APC_UPS_BINARY_SENSOR(smart_trim, Q, Q)
+  APC_UPS_BINARY_SENSOR(smart_boost, Q, Q)
+  APC_UPS_BINARY_SENSOR(on_line, Q, Q)
+  APC_UPS_BINARY_SENSOR(on_battery, Q, Q)
+  APC_UPS_BINARY_SENSOR(output_overloaded, Q, Q)
+  APC_UPS_BINARY_SENSOR(battery_low, Q, Q)
+  APC_UPS_BINARY_SENSOR(replace_battery, Q, Q)
   APC_UPS_SENSOR(state_of_charge, LOWER_F, f, float)
 
   APC_UPS_SENSOR(estimated_runtime, LOWER_J, j, float)
@@ -122,6 +132,7 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   void publish_state_(sensor::Sensor *sensor, float value);
   void publish_state_(switch_::Switch *obj, const bool &state);
   void publish_state_(text_sensor::TextSensor *text_sensor, const std::string &state);
+  bool check_bit_(uint8_t mask, uint8_t flag) { return (mask & flag) == flag; }
   void add_polling_command_(const char *command, ENUMPollingCommand polling_command);
   void empty_uart_buffer_();
   uint8_t check_incoming_crc_();

@@ -75,6 +75,14 @@ void ApcUps::loop() {
         break;
       case POLLING_Q:
         this->publish_state_(this->status_bitmask_, value_status_bitmask_);
+        this->publish_state_(this->runtime_calibration_, check_bit_(value_status_bitmask_, 1));
+        this->publish_state_(this->smart_trim_, check_bit_(value_status_bitmask_, 2));
+        this->publish_state_(this->smart_boost_, check_bit_(value_status_bitmask_, 4));
+        this->publish_state_(this->on_line_, check_bit_(value_status_bitmask_, 8));
+        this->publish_state_(this->on_battery_, check_bit_(value_status_bitmask_, 16));
+        this->publish_state_(this->output_overloaded_, check_bit_(value_status_bitmask_, 32));
+        this->publish_state_(this->battery_low_, check_bit_(value_status_bitmask_, 64));
+        this->publish_state_(this->replace_battery_, check_bit_(value_status_bitmask_, 128));
         break;
       case POLLING_LOWER_F:
         this->publish_state_(this->state_of_charge_, value_state_of_charge_);

@@ -9,26 +9,25 @@ DEPENDENCIES = ["uart"]
 CONF_FAULTS_PRESENT = "faults_present"
 
 CONF_SMART_MODE = "smart_mode"
-
-CONF_UTILITY_FAIL = "utility_fail"
+CONF_RUNTIME_CALIBRATION = "runtime_calibration"
+CONF_SMART_TRIM = "smart_trim"
+CONF_SMART_BOOST = "smart_boost"
+CONF_ON_LINE = "on_line"
+CONF_ON_BATTERY = "on_battery"
+CONF_OUTPUT_OVERLOADED = "output_overloaded"
 CONF_BATTERY_LOW = "battery_low"
-CONF_BYPASS_ACTIVE = "bypass_active"
-CONF_UPS_FAILED = "ups_failed"
-CONF_UPS_TYPE_STANDBY = "ups_type_standby"
-CONF_TEST_IN_PROGRESS = "test_in_progress"
-CONF_SHUTDOWN_ACTIVE = "shutdown_active"
-CONF_BEEPER_ON = "beeper_on"
+CONF_REPLACE_BATTERY = "replace_battery"
 
 TYPES = [
     CONF_SMART_MODE,
-    CONF_UTILITY_FAIL,
+    CONF_RUNTIME_CALIBRATION,
+    CONF_SMART_TRIM,
+    CONF_SMART_BOOST,
+    CONF_ON_LINE,
+    CONF_ON_BATTERY,
+    CONF_OUTPUT_OVERLOADED,
     CONF_BATTERY_LOW,
-    CONF_BYPASS_ACTIVE,
-    CONF_UPS_FAILED,
-    CONF_UPS_TYPE_STANDBY,
-    CONF_TEST_IN_PROGRESS,
-    CONF_SHUTDOWN_ACTIVE,
-    CONF_BEEPER_ON,
+    CONF_REPLACE_BATTERY,
 ]
 
 CONFIG_SCHEMA = APC_UPS_COMPONENT_SCHEMA.extend(
