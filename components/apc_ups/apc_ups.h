@@ -29,22 +29,22 @@ enum ENUMPollingCommand {
   POLLING_O = 14,        // Output voltage
   POLLING_P = 15,        // Power load in %
   POLLING_Q = 16,        // Status flags
-  POLLING_R = 17,        // Turn dumb @TODO
+  POLLING_R = 17,        // Turn dumb
   POLLING_S = 18,        // Soft shutdown @TODO
   POLLING_U = 19,        // Simulate power failure @TODO
   POLLING_V = 20,        // Old firmware version @TODO
   POLLING_W = 21,        // Self test @TODO
   POLLING_X = 22,        // Self test results @TODO
   POLLING_Z = 23,        // Shutdown immediately @TODO
-  POLLING_LOWER_A = 24,  // Protocol info @TODO
-  POLLING_LOWER_B = 25,  // Firmware revision @TODO
+  POLLING_LOWER_A = 24,  // Protocol info
+  POLLING_LOWER_B = 25,  // Firmware revision
   POLLING_LOWER_C = 26,  // UPS local id @TODO
   POLLING_LOWER_E = 27,  // Return threshold @TODO
-  POLLING_LOWER_F = 28,  // Battery level @TODO
+  POLLING_LOWER_F = 28,  // Battery level
   POLLING_LOWER_G = 29,  // Nominal battery voltage @TODO
   POLLING_LOWER_H = 30,  // Measure-UPS ambient humidity @TODO
   POLLING_LOWER_I = 31,  // Measure-UPS dry contacts @TODO
-  POLLING_LOWER_J = 32,  // Estimated runtime @TODO
+  POLLING_LOWER_J = 32,  // Estimated runtime
   POLLING_LOWER_K = 33,  // Alarm delay @TODO
   POLLING_LOWER_L = 34,  // Low transfer voltage @TODO
   POLLING_LOWER_M = 35,  // Manufacture date @TODO
@@ -115,6 +115,8 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   APC_UPS_BINARY_SENSOR(replace_battery, Q, Q)
   APC_UPS_SENSOR(state_of_charge, LOWER_F, f, float)
 
+  APC_UPS_VALUED_TEXT_SENSOR(protocol_info, LOWER_A, a, std::string)
+  APC_UPS_VALUED_TEXT_SENSOR(firmware_revision, LOWER_B, b, std::string)
   APC_UPS_SENSOR(estimated_runtime, LOWER_J, j, float)
 
   void switch_command(const std::string &command);

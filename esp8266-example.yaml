@@ -97,3 +97,7 @@ text_sensor:
     apc_ups_id: ups0
     cause_of_last_transfer:
       name: "${name} cause of last transfer"
+    protocol_info:
+      name: "${name} protocol info"
+    firmware_revision:
+      name: "${name} firmware revision"

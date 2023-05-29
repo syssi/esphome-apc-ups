@@ -84,6 +84,12 @@ void ApcUps::loop() {
         this->publish_state_(this->battery_low_, check_bit_(value_status_bitmask_, 64));
         this->publish_state_(this->replace_battery_, check_bit_(value_status_bitmask_, 128));
         break;
+      case POLLING_LOWER_A:
+        this->publish_state_(this->protocol_info_, value_protocol_info_);
+        break;
+      case POLLING_LOWER_B:
+        this->publish_state_(this->firmware_revision_, value_firmware_revision_);
+        break;
       case POLLING_LOWER_F:
         this->publish_state_(this->state_of_charge_, value_state_of_charge_);
         break;
@@ -147,6 +153,18 @@ void ApcUps::loop() {
         ESP_LOGD(TAG, "Decode Q");
         // "08\r\n"
         sscanf(tmp, "%x", &value_status_bitmask_);  // NOLINT
+        this->state_ = STATE_POLL_DECODED;
+        break;
+      case POLLING_LOWER_A:
+        ESP_LOGD(TAG, "Decode a");
+        // "3.!$%+?=#|.\x01\x0E\x1A\')+-89@ABDEFGKLMNOPQRSUVWXYZabcdefgjklmnopqrsuxyz~\r\n"
+        this->value_protocol_info_ = tmp;
+        this->state_ = STATE_POLL_DECODED;
+        break;
+      case POLLING_LOWER_B:
+        ESP_LOGD(TAG, "Decode b");
+        // "21.3.I\r\n"
+        this->value_firmware_revision_ = tmp;
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_F:
