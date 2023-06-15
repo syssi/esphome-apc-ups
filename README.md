@@ -132,3 +132,4 @@ uart:
 
 * https://github.com/kirbah/apc-ups
 * http://www.apcupsd.org/manual/#apc-smart-protocol
+* https://github.com/ssieb/custom_components/tree/master/components/apcups
