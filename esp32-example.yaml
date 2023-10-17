@@ -107,3 +107,7 @@ text_sensor:
       name: "${name} protocol info"
     firmware_revision:
       name: "${name} firmware revision"
+    manufacture_date:
+      name: "${name} manufacture date"
+    last_battery_change_date:
+      name: "${name} last battery change date"
