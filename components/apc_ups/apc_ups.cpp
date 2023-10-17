@@ -99,8 +99,14 @@ void ApcUps::loop() {
       case POLLING_LOWER_J:
         this->publish_state_(this->estimated_runtime_, value_estimated_runtime_);
         break;
+      case POLLING_LOWER_M:
+        this->publish_state_(this->manufacture_date_, value_manufacture_date_);
+        break;
       case POLLING_LOWER_T:
         this->publish_state_(this->ambient_temperature_, value_ambient_temperature_);
+        break;
+      case POLLING_LOWER_X:
+        this->publish_state_(this->last_battery_change_date_, value_last_battery_change_date_);
         break;
       default:
         ESP_LOGD(TAG, "Response not implemented");
@@ -191,10 +197,22 @@ void ApcUps::loop() {
         sscanf(tmp, "%f:", &value_estimated_runtime_);  // NOLINT
         this->state_ = STATE_POLL_DECODED;
         break;
+      case POLLING_LOWER_M:
+        ESP_LOGD(TAG, "Decode m");
+        // "11/29/96\r\n"
+        this->value_manufacture_date_ = tmp;
+        this->state_ = STATE_POLL_DECODED;
+        break;
       case POLLING_LOWER_T:
         ESP_LOGD(TAG, "Decode t");
         // "80.5\r\n"
         sscanf(tmp, "%f", &value_ambient_temperature_);  // NOLINT
+        this->state_ = STATE_POLL_DECODED;
+        break;
+      case POLLING_LOWER_X:
+        ESP_LOGD(TAG, "Decode x");
+        // "11/29/96\r\n"
+        this->value_last_battery_change_date_ = tmp;
         this->state_ = STATE_POLL_DECODED;
         break;
       default:
