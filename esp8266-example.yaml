@@ -107,5 +107,5 @@ text_sensor:
       name: "${name} firmware revision"
     manufacture_date:
       name: "${name} manufacture date"
-    last_battery_change_data:
+    last_battery_change_date:
       name: "${name} last battery change date"
