@@ -58,6 +58,9 @@ void ApcUps::loop() {
       case POLLING_B:
         this->publish_state_(this->battery_voltage_, value_battery_voltage_);
         break;
+      case POLLING_C:
+        this->publish_state_(this->internal_temperature_, value_internal_temperature_);
+        break;
       case POLLING_F:
         this->publish_state_(this->grid_frequency_, value_grid_frequency_);
         break;
@@ -96,6 +99,9 @@ void ApcUps::loop() {
       case POLLING_LOWER_J:
         this->publish_state_(this->estimated_runtime_, value_estimated_runtime_);
         break;
+      case POLLING_LOWER_T:
+        this->publish_state_(this->ambient_temperature_, value_ambient_temperature_);
+        break;
       default:
         ESP_LOGD(TAG, "Response not implemented");
         break;
@@ -117,6 +123,12 @@ void ApcUps::loop() {
         ESP_LOGD(TAG, "Decode B");
         // "13.61\r\n"
         sscanf(tmp, "%f", &value_battery_voltage_);  // NOLINT
+        this->state_ = STATE_POLL_DECODED;
+        break;
+      case POLLING_C:
+        ESP_LOGD(TAG, "Decode C");
+        // "36\r\n"
+        sscanf(tmp, "%f", &value_internal_temperature_);  // NOLINT
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_F:
@@ -177,6 +189,12 @@ void ApcUps::loop() {
         ESP_LOGD(TAG, "Decode j");
         // "0042:\r\n"
         sscanf(tmp, "%f:", &value_estimated_runtime_);  // NOLINT
+        this->state_ = STATE_POLL_DECODED;
+        break;
+      case POLLING_LOWER_T:
+        ESP_LOGD(TAG, "Decode t");
+        // "80.5\r\n"
+        sscanf(tmp, "%f", &value_ambient_temperature_);  // NOLINT
         this->state_ = STATE_POLL_DECODED;
         break;
       default:

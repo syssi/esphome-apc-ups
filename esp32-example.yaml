@@ -93,6 +93,10 @@ sensor:
       name: "${name} state of charge"
     estimated_runtime:
       name: "${name} estimated runtime"
+    internal_temperature:
+      name: "${name} internal temperature"
+    ambient_temperature:
+      name: "${name} ambient temperature"
 
 text_sensor:
   - platform: apc_ups

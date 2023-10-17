@@ -15,7 +15,7 @@ enum ENUMPollingCommand {
   POLLING_Y = 0,         // Enable smart mode
   POLLING_A = 1,         // Front panel test @TODO
   POLLING_B = 2,         // Battery voltage
-  POLLING_C = 3,         // Internal temperature @TODO
+  POLLING_C = 3,         // Internal temperature
   POLLING_D = 4,         // Runtime calibration @TODO
   POLLING_E = 5,         // Automatic self test interval @TODO
   POLLING_F = 6,         // Grid frequency
@@ -54,7 +54,7 @@ enum ENUMPollingCommand {
   POLLING_LOWER_Q = 39,  // Low battery warning @TODO
   POLLING_LOWER_R = 40,  // Wakeup delay @TODO
   POLLING_LOWER_S = 41,  // Sensitivity @TODO
-  POLLING_LOWER_T = 42,  // Measure-UPS ambient temperature @TODO
+  POLLING_LOWER_T = 42,  // Measure-UPS ambient temperature
   POLLING_LOWER_U = 43,  // Upper transfer voltage @TODO
   POLLING_LOWER_V = 44,  // Measure-UPS firmware @TODO
   POLLING_LOWER_X = 45,  // Last battery change date @TODO
@@ -99,6 +99,7 @@ struct PollingCommand {
 class ApcUps : public uart::UARTDevice, public PollingComponent {
   APC_UPS_VALUED_BINARY_SENSOR(smart_mode, Y, Y, bool)
   APC_UPS_SENSOR(battery_voltage, B, B, float)
+  APC_UPS_SENSOR(internal_temperature, C, C, float)
   APC_UPS_SENSOR(grid_frequency, F, F, float)
   APC_UPS_VALUED_TEXT_SENSOR(cause_of_last_transfer, G, G, std::string)
   APC_UPS_SENSOR(grid_voltage, L, L, float)
@@ -118,6 +119,7 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   APC_UPS_VALUED_TEXT_SENSOR(protocol_info, LOWER_A, a, std::string)
   APC_UPS_VALUED_TEXT_SENSOR(firmware_revision, LOWER_B, b, std::string)
   APC_UPS_SENSOR(estimated_runtime, LOWER_J, j, float)
+  APC_UPS_SENSOR(ambient_temperature, LOWER_T, t, float)
 
   void switch_command(const std::string &command);
   void setup() override;
