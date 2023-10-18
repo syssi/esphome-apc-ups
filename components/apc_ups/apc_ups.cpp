@@ -93,6 +93,9 @@ void ApcUps::loop() {
       case POLLING_LOWER_B:
         this->publish_state_(this->firmware_revision_, value_firmware_revision_);
         break;
+      case POLLING_LOWER_C:
+        this->publish_state_(this->local_identifier_, value_local_identifier_);
+        break;
       case POLLING_LOWER_F:
         this->publish_state_(this->state_of_charge_, value_state_of_charge_);
         break;
@@ -183,6 +186,12 @@ void ApcUps::loop() {
         ESP_LOGD(TAG, "Decode b");
         // "21.3.I\r\n"
         this->value_firmware_revision_ = tmp;
+        this->state_ = STATE_POLL_DECODED;
+        break;
+      case POLLING_LOWER_C:
+        ESP_LOGD(TAG, "Decode c");
+        // "UPS_IDEN\r\n"
+        this->value_local_identifier_ = tmp;
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_F:

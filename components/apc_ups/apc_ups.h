@@ -38,7 +38,7 @@ enum ENUMPollingCommand {
   POLLING_Z = 23,        // Shutdown immediately @TODO
   POLLING_LOWER_A = 24,  // Protocol info
   POLLING_LOWER_B = 25,  // Firmware revision
-  POLLING_LOWER_C = 26,  // UPS local id @TODO
+  POLLING_LOWER_C = 26,  // UPS local identifier
   POLLING_LOWER_E = 27,  // Return threshold @TODO
   POLLING_LOWER_F = 28,  // Battery level
   POLLING_LOWER_G = 29,  // Nominal battery voltage @TODO
@@ -118,6 +118,7 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
 
   APC_UPS_VALUED_TEXT_SENSOR(protocol_info, LOWER_A, a, std::string)
   APC_UPS_VALUED_TEXT_SENSOR(firmware_revision, LOWER_B, b, std::string)
+  APC_UPS_VALUED_TEXT_SENSOR(local_identifier, LOWER_C, c, std::string)
   APC_UPS_SENSOR(estimated_runtime, LOWER_J, j, float)
   APC_UPS_VALUED_TEXT_SENSOR(manufacture_date, LOWER_M, m, std::string)
   APC_UPS_SENSOR(ambient_temperature, LOWER_T, t, float)
