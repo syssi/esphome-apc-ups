@@ -1,0 +1,187 @@
+substitutions:
+  name: apc-emulator
+  tx_pin: GPIO4
+  rx_pin: GPIO5
+
+esphome:
+  name: ${name}
+
+esp8266:
+  board: d1_mini
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+ota:
+
+logger:
+  level: DEBUG
+
+api:
+  reboot_timeout: 0s
+
+uart:
+  id: uart_0
+  baud_rate: 2400
+  tx_pin: ${tx_pin}
+  rx_pin: ${rx_pin}
+  debug:
+    direction: BOTH
+    dummy_receiver: true
+    after:
+      delimiter: "\n"
+    sequence:
+      - lambda: UARTDebug::log_string(direction, bytes);
+      - lambda:
+          std::string request(bytes.begin(), bytes.end());
+          if(request == "Y") {
+            id(uart_0).write_str("SM\r\n");
+            return;
+          }
+          if(request == "B") {
+            id(uart_0).write_str("54.27\r\n");
+            return;
+          }
+          if(request == "C") {
+            id(uart_0).write_str("027.4\r\n");
+            return;
+          }
+          if(request == "E") {
+            id(uart_0).write_str("OFF\r\n");
+            return;
+          }
+          if(request == "F") {
+            id(uart_0).write_str("50.03\r\n");
+            return;
+          }
+          if(request == "G") {
+            id(uart_0).write_str("S\r\n");
+            return;
+          }
+          if(request == "L") {
+            id(uart_0).write_str("216.0\r\n");
+            return;
+          }
+          if(request == "M") {
+            id(uart_0).write_str("217.4\r\n");
+            return;
+          }
+          if(request == "N") {
+            id(uart_0).write_str("214.5\r\n");
+            return;
+          }
+          if(request == "O") {
+            id(uart_0).write_str("229.3\r\n");
+            return;
+          }
+          if(request == "P") {
+            id(uart_0).write_str("027.0\r\n");
+            return;
+          }
+          if(request == "Q") {
+            id(uart_0).write_str("08\r\n");
+            return;
+          }
+          if(request == "V") {
+            id(uart_0).write_str("5YI\r\n");
+            return;
+          }
+          if(request == "a") {
+            id(uart_0).write_str("4.!$%+?=*#|\x04.\x01\x05\t\f\x0E\x14\x16\x1A')+-/789<>@ABCDEFGKLMNOPQRSUVWXYZ\^abcdefgjklmnopqrsuwxyz~�.\x81:\xD0\xE2\xF0\xFD\xFE\xFF\r\n");
+            return;
+          }
+          if(request == "b") {
+            id(uart_0).write_str("411.7.I\r\n");
+            return;
+          }
+          if(request == "c") {
+            id(uart_0).write_str("UPS_IDEN\r\n");
+            return;
+          }
+          if(request == "e") {
+            id(uart_0).write_str("00\r\n");
+            return;
+          }
+          if(request == "f") {
+            id(uart_0).write_str("100.0\r\n");
+            return;
+          }
+          if(request == "g") {
+            id(uart_0).write_str("048\r\n");
+            return;
+          }
+          if(request == "h") {
+            id(uart_0).write_str("NA\r\n");
+            return;
+          }
+          if(request == "i") {
+            id(uart_0).write_str("NA\r\n");
+            return;
+          }
+          if(request == "j") {
+            id(uart_0).write_str("0064:\r\n");
+            return;
+          }
+          if(request == "k") {
+            id(uart_0).write_str("0\r\n");
+            return;
+          }
+          if(request == "l") {
+            id(uart_0).write_str("161\r\n");
+            return;
+          }
+          if(request == "m") {
+            id(uart_0).write_str("01/06/07\r\n");
+            return;
+          }
+          if(request == "n") {
+            id(uart_0).write_str("JS1501113445\x00\x00\r\n");
+            return;
+          }
+          if(request == "o") {
+            id(uart_0).write_str("230\r\n");
+            return;
+          }
+          if(request == "p") {
+            id(uart_0).write_str("020\r\n");
+            return;
+          }
+          if(request == "q") {
+            id(uart_0).write_str("02\r\n");
+            return;
+          }
+          if(request == "r") {
+            id(uart_0).write_str("000\r\n");
+            return;
+          }
+          if(request == "s") {
+            id(uart_0).write_str("A\r\n");
+            return;
+          }
+          if(request == "t") {
+            id(uart_0).write_str("NA\r\n");
+            return;
+          }
+          if(request == "u") {
+            id(uart_0).write_str("253\r\n");
+            return;
+          }
+          if(request == "v") {
+            id(uart_0).write_str("NA\r\n");
+            return;
+          }
+          if(request == "x") {
+            id(uart_0).write_str("01/06/21\r\n");
+            return;
+          }
+          if(request == "y") {
+            id(uart_0).write_str("(C) APCC\r\n");
+            return;
+          }
+          if(request == "9") {
+            id(uart_0).write_str("FF\r\n");
+            return;
+          }
+          id(uart_0).write_str("NA\r\n");
+          ESP_LOGD("Lambda", "Unhandled request %s", request.c_str());
