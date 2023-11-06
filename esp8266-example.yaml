@@ -101,8 +101,11 @@ text_sensor:
     apc_ups_id: ups0
     cause_of_last_transfer:
       name: "${name} cause of last transfer"
-    protocol_info:
-      name: "${name} protocol info"
+    # Could cause a connection reset of the Home Assistant API connection
+    # See https://github.com/syssi/esphome-apc-ups/issues/1
+    #
+    # protocol_info:
+    #   name: "${name} protocol info"
     firmware_revision:
       name: "${name} firmware revision"
     manufacture_date:
