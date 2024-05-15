@@ -3,12 +3,13 @@ from esphome.components import sensor
 import esphome.config_validation as cv
 from esphome.const import (
     CONF_BATTERY_VOLTAGE,
+    CONF_INTERNAL_TEMPERATURE,
     DEVICE_CLASS_EMPTY,
+    DEVICE_CLASS_TEMPERATURE,
     DEVICE_CLASS_VOLTAGE,
     ICON_CURRENT_AC,
     ICON_TIMELAPSE,
     STATE_CLASS_MEASUREMENT,
-    DEVICE_CLASS_TEMPERATURE,
     STATE_CLASS_TOTAL_INCREASING,
     UNIT_CELSIUS,
     UNIT_EMPTY,
@@ -30,7 +31,7 @@ CONF_AC_OUTPUT_LOAD = "ac_output_load"
 CONF_STATUS_BITMASK = "status_bitmask"
 CONF_STATE_OF_CHARGE = "state_of_charge"
 CONF_ESTIMATED_RUNTIME = "estimated_runtime"
-CONF_INTERNAL_TEMPERATURE = "internal_temperature"
+# CONF_INTERNAL_TEMPERATURE = "internal_temperature"
 CONF_AMBIENT_TEMPERATURE = "ambient_temperature"
 
 ICON_STATE_OF_CHARGE = "mdi:battery-50"
