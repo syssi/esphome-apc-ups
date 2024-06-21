@@ -7,7 +7,9 @@ substitutions:
 
 esphome:
   name: ${name}
-  platform: ESP8266
+  min_version: 2024.6.0
+
+esp8266:
   board: d1_mini
 
 wifi:
