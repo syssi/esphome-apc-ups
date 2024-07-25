@@ -76,6 +76,20 @@ binary_sensor:
       name: "${name} battery low"
     replace_battery:
       name: "${name} replace battery"
+    smart_mode:
+      name: "${name} smart mode"
+
+switch:
+  - platform: apc_ups
+    apc_ups_id: ups0
+    front_panel_test:
+      name: "${name} front panel test"
+    simulate_power_failure:
+      name: "${name} simulate power failure"
+    self_test:
+      name: "${name} self test"
+    start_runtime_calibration:
+      name: "${name} start runtime calibration"
 
 sensor:
   - platform: apc_ups
@@ -100,6 +114,14 @@ sensor:
       name: "${name} internal temperature"
     ambient_temperature:
       name: "${name} ambient temperature"
+    max_grid_voltage:
+      name: "${name} max grid voltage"
+    min_grid_voltage:
+      name: "${name} min grid voltage"
+    nominal_battery_voltage:
+      name: "${name} nominal battery voltage"
+    nominal_output_voltage:
+      name: "${name} nominal output voltage"
 
 text_sensor:
   - platform: apc_ups
@@ -113,9 +135,17 @@ text_sensor:
     #   name: "${name} protocol info"
     firmware_revision:
       name: "${name} firmware revision"
+    old_firmware_version:
+      name: "${name} old firmware version"
     manufacture_date:
       name: "${name} manufacture date"
     last_battery_change_date:
       name: "${name} last battery change date"
     local_identifier:
       name: "${name} local identifier"
+    serial_number:
+      name: "${name} serial number"
+    self_test_results:
+      name: "${name} self test results"
+    model_name:
+      name: "${name} model name"
