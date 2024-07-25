@@ -18,7 +18,7 @@ CONF_MEASURE_UPC_FIRMWARE = "measure_upc_firmware"
 CONF_COPYRIGHT_NOTICE = "copyright_notice"
 CONF_SELF_TEST_RESULTS = "self_test_results"
 CONF_ALARM_DELAY = "alarm_delay"
-CONF_LINE_QUALITI = "line_quality"
+CONF_LINE_QUALITY = "line_quality"
 CONF_MODEL_NAME = "model_name"
 
 TYPES = [
@@ -34,7 +34,7 @@ TYPES = [
     CONF_COPYRIGHT_NOTICE,
     CONF_SELF_TEST_RESULTS,
     CONF_ALARM_DELAY,
-    CONF_LINE_QUALITI,
+    CONF_LINE_QUALITY,
     CONF_MODEL_NAME,
 ]
 
