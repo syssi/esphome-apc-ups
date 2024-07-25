@@ -3,6 +3,7 @@ from esphome.components import sensor
 import esphome.config_validation as cv
 from esphome.const import (
     CONF_BATTERY_VOLTAGE,
+    CONF_INTERNAL_TEMPERATURE,
     DEVICE_CLASS_EMPTY,
     DEVICE_CLASS_HUMIDITY,
     DEVICE_CLASS_TEMPERATURE,
@@ -36,7 +37,7 @@ CONF_AC_OUTPUT_LOAD = "ac_output_load"
 CONF_STATUS_BITMASK = "status_bitmask"
 CONF_STATE_OF_CHARGE = "state_of_charge"
 CONF_ESTIMATED_RUNTIME = "estimated_runtime"
-CONF_INTERNAL_TEMPERATURE = "internal_temperature"
+# CONF_INTERNAL_TEMPERATURE = "internal_temperature"
 CONF_AMBIENT_HUMIDITY = "ambient_humidity"
 CONF_AMBIENT_TEMPERATURE = "ambient_temperature"
 CONF_NOMINAL_BATTERY_VOLTAGE = "nominal_battery_voltage"
