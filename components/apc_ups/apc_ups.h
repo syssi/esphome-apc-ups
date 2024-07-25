@@ -29,14 +29,14 @@ enum ENUMPollingCommand {
   POLLING_O = 14,        // Output voltage
   POLLING_P = 15,        // Power load in %
   POLLING_Q = 16,        // Status flags
-  POLLING_R = 17,        // Turn dumb @TODO
+  POLLING_R = 17,        // Turn dumb
   POLLING_S = 18,        // Soft shutdown @TODO
   POLLING_U = 19,        // Simulate power failure
   POLLING_V = 20,        // Old firmware version
   POLLING_W = 21,        // Self test
   POLLING_X = 22,        // Self test results
   POLLING_Z = 23,        // Shutdown immediately @TODO
-  POLLING_LOWER_A = 24,  // Protocol info  @TODO
+  POLLING_LOWER_A = 24,  // Protocol info
   POLLING_LOWER_B = 25,  // Firmware revision
   POLLING_LOWER_C = 26,  // UPS local identifier
   POLLING_LOWER_E = 27,  // Return threshold
@@ -57,7 +57,7 @@ enum ENUMPollingCommand {
   POLLING_LOWER_T = 42,  // Measure-UPS ambient temperature
   POLLING_LOWER_U = 43,  // Upper transfer voltage
   POLLING_LOWER_V = 44,  // Measure-UPS firmware
-  POLLING_LOWER_X = 45,  // Last battery change date @TODO
+  POLLING_LOWER_X = 45,  // Last battery change date
   POLLING_LOWER_Y = 46,  // Copyright notice
   POLLING_LOWER_Z = 47,  // Reset to factory settings @TODO
   POLLING_9 = 48,        // Line quality
