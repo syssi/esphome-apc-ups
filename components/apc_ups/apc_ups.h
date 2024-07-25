@@ -154,8 +154,6 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   void dump_config() override;
   void update() override;
 
-  std::string get_text_sensor_state(text_sensor::TextSensor *text_sensor);
-
  protected:
   static const size_t APC_UPS_READ_BUFFER_LENGTH = 110;  // maximum supported answer length
   static const size_t COMMAND_QUEUE_LENGTH = 10;

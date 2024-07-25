@@ -462,9 +462,6 @@ void ApcUps::loop() {
   }
 }
 
-// get text_sensor state for others components
-std::string ApcUps::get_text_sensor_state(text_sensor::TextSensor *text_sensor) { return text_sensor->state; }
-
 uint8_t ApcUps::check_incoming_length_(uint8_t length) {
   if (this->read_pos_ - 3 == length) {
     return 1;
