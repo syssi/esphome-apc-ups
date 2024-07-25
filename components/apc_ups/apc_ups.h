@@ -141,7 +141,7 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   APC_UPS_VALUED_TEXT_SENSOR(last_battery_change_date, LOWER_X, x, std::string)
   APC_UPS_VALUED_TEXT_SENSOR(copyright_notice, LOWER_Y, Y, std::string)
   APC_UPS_VALUED_TEXT_SENSOR(line_quality, 9, 9, std::string)
-  APC_UPS_VALUED_TEXT_SENSOR(model_name, CTRL_A, CTRL_A, std::string)
+  APC_UPS_VALUED_TEXT_SENSOR(model_name, CTRL_A, "\x01", std::string)
 
   APC_UPS_VALUED_SWITCH(front_panel_test, A, A, bool)
   APC_UPS_VALUED_SWITCH(self_test, W, W, bool)

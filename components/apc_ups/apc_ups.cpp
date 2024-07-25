@@ -553,13 +553,6 @@ void ApcUps::add_polling_command_(const char *command, ENUMPollingCommand pollin
           strcmp(command, "W") == 0) {
         return;
       };  // Exclusion from the command queue
-      if (strcmp(command, "CTRL_A") == 0) {
-        unsigned char *str1 = new unsigned char[1];
-        str1[0] = 0x01;
-        str1[1] = 0x00;
-        const char *str2 = (const char *) str1;
-        command = str2;
-      }
       size_t length = strlen(command) + 1;
       const char *beg = command;
       const char *end = command + length;
