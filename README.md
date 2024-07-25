@@ -12,6 +12,7 @@ ESPHome component to monitor and control a APC UPS via RS232
 
 * APC SU420INET (firmware `21.3.I`)
 * APC SUVS420I (firmware `42.L.I`)
+* APC SUA1000I (firmware `652.13.I`)
 
 ## Requirements
 

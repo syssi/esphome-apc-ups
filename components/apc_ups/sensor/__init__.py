@@ -3,8 +3,8 @@ from esphome.components import sensor
 import esphome.config_validation as cv
 from esphome.const import (
     CONF_BATTERY_VOLTAGE,
-    CONF_INTERNAL_TEMPERATURE,
     DEVICE_CLASS_EMPTY,
+    DEVICE_CLASS_HUMIDITY,
     DEVICE_CLASS_TEMPERATURE,
     DEVICE_CLASS_VOLTAGE,
     ICON_CURRENT_AC,
@@ -26,13 +26,21 @@ DEPENDENCIES = ["uart"]
 # CONF_BATTERY_VOLTAGE = "battery_voltage"
 CONF_GRID_FREQUENCY = "grid_frequency"
 CONF_GRID_VOLTAGE = "grid_voltage"
+CONF_MAX_GRID_VOLTAGE = "max_grid_voltage"
+CONF_MIN_GRID_VOLTAGE = "min_grid_voltage"
+CONF_LOW_TRANSFER_VOLTAGE = "low_transfer_voltage"
+CONF_NOMINAL_OUTPUT_VOLTAGE = "nominal_output_voltage"
+CONF_UPPER_TRANSFER_VOLTAGE = "upper_transfer_voltage"
 CONF_AC_OUTPUT_VOLTAGE = "ac_output_voltage"
 CONF_AC_OUTPUT_LOAD = "ac_output_load"
 CONF_STATUS_BITMASK = "status_bitmask"
 CONF_STATE_OF_CHARGE = "state_of_charge"
 CONF_ESTIMATED_RUNTIME = "estimated_runtime"
-# CONF_INTERNAL_TEMPERATURE = "internal_temperature"
+CONF_INTERNAL_TEMPERATURE = "internal_temperature"
+CONF_AMBIENT_HUMIDITY = "ambient_humidity"
 CONF_AMBIENT_TEMPERATURE = "ambient_temperature"
+CONF_NOMINAL_BATTERY_VOLTAGE = "nominal_battery_voltage"
+CONF_RETURN_THRESHOLD = "return_threshold"
 
 ICON_STATE_OF_CHARGE = "mdi:battery-50"
 ICON_OPERATION_STATUS_BITMASK = "mdi:heart-pulse"
@@ -42,6 +50,15 @@ TYPES = {
         unit_of_measurement=UNIT_VOLT,
         accuracy_decimals=2,
         device_class=DEVICE_CLASS_VOLTAGE,
+    ),
+    CONF_NOMINAL_BATTERY_VOLTAGE: sensor.sensor_schema(
+        unit_of_measurement=UNIT_VOLT,
+        accuracy_decimals=2,
+        device_class=DEVICE_CLASS_VOLTAGE,
+    ),
+    CONF_RETURN_THRESHOLD: sensor.sensor_schema(
+        unit_of_measurement=UNIT_PERCENT,
+        accuracy_decimals=0,
     ),
     CONF_GRID_FREQUENCY: sensor.sensor_schema(
         unit_of_measurement=UNIT_HERTZ,
@@ -53,6 +70,31 @@ TYPES = {
         accuracy_decimals=1,
         device_class=DEVICE_CLASS_VOLTAGE,
     ),
+    CONF_MAX_GRID_VOLTAGE: sensor.sensor_schema(
+        unit_of_measurement=UNIT_VOLT,
+        accuracy_decimals=1,
+        device_class=DEVICE_CLASS_VOLTAGE,
+    ),
+    CONF_MIN_GRID_VOLTAGE: sensor.sensor_schema(
+        unit_of_measurement=UNIT_VOLT,
+        accuracy_decimals=1,
+        device_class=DEVICE_CLASS_VOLTAGE,
+    ),
+    CONF_LOW_TRANSFER_VOLTAGE: sensor.sensor_schema(
+        unit_of_measurement=UNIT_VOLT,
+        accuracy_decimals=1,
+        device_class=DEVICE_CLASS_VOLTAGE,
+    ),
+    CONF_NOMINAL_OUTPUT_VOLTAGE: sensor.sensor_schema(
+        unit_of_measurement=UNIT_VOLT,
+        accuracy_decimals=1,
+        device_class=DEVICE_CLASS_VOLTAGE,
+    ),
+    CONF_UPPER_TRANSFER_VOLTAGE: sensor.sensor_schema(
+        unit_of_measurement=UNIT_VOLT,
+        accuracy_decimals=1,
+        device_class=DEVICE_CLASS_VOLTAGE,
+    ),
     CONF_AC_OUTPUT_VOLTAGE: sensor.sensor_schema(
         unit_of_measurement=UNIT_VOLT,
         accuracy_decimals=1,
@@ -60,7 +102,7 @@ TYPES = {
     ),
     CONF_AC_OUTPUT_LOAD: sensor.sensor_schema(
         unit_of_measurement=UNIT_PERCENT,
-        accuracy_decimals=1,
+        accuracy_decimals=0,
     ),
     cv.Optional(CONF_STATUS_BITMASK): sensor.sensor_schema(
         unit_of_measurement=UNIT_EMPTY,
@@ -85,15 +127,21 @@ TYPES = {
     ),
     cv.Optional(CONF_INTERNAL_TEMPERATURE): sensor.sensor_schema(
         unit_of_measurement=UNIT_CELSIUS,
-        icon=ICON_TIMELAPSE,
         accuracy_decimals=1,
         device_class=DEVICE_CLASS_TEMPERATURE,
+        state_class=STATE_CLASS_MEASUREMENT,
+    ),
+    cv.Optional(CONF_AMBIENT_HUMIDITY): sensor.sensor_schema(
+        unit_of_measurement=UNIT_PERCENT,
+        accuracy_decimals=1,
+        device_class=DEVICE_CLASS_HUMIDITY,
+        state_class=STATE_CLASS_MEASUREMENT,
     ),
     cv.Optional(CONF_AMBIENT_TEMPERATURE): sensor.sensor_schema(
         unit_of_measurement=UNIT_CELSIUS,
-        icon=ICON_TIMELAPSE,
         accuracy_decimals=1,
         device_class=DEVICE_CLASS_TEMPERATURE,
+        state_class=STATE_CLASS_MEASUREMENT,
     ),
     # CONF_AC_OUTPUT_RATING_VOLTAGE: sensor.sensor_schema(
     #     unit_of_measurement=UNIT_VOLT,
