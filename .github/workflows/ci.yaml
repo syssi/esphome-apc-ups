@@ -8,6 +8,9 @@ on:  # yamllint disable-line rule:truthy
   schedule:
     - cron: 0 12 * * *
 
+env:
+  FORCE_COLOR: 1
+
 jobs:
   yamllint:
     runs-on: ubuntu-latest
@@ -190,17 +193,16 @@ jobs:
       - name: Write tests/secrets.yaml
         shell: bash
         run: 'echo -e "wifi_ssid: ssid\nwifi_password: password\nmqtt_host: host\nmqtt_username: username\nmqtt_password: password" > tests/secrets.yaml'
-      - name: Validate esp8266 example configurations
+      - name: Validate example configurations
         run: |
-          esphome -s external_components_source components config esp8266-example.yaml
-      - name: Validate esp32 example configurations
-        run: |
-          esphome -s external_components_source components config esp32-example.yaml
+          for YAML in esp*.yaml; do
+            esphome -s external_components_source components config $YAML >/dev/null
+          done
       - name: Validate test configurations
         run: |
-          esphome -s external_components_source ../components config tests/esp8266-apc-su420inet-emulator.yaml
-          esphome -s external_components_source ../components config tests/esp8266-apc-rt1000xl-emulator.yaml
-          esphome -s external_components_source ../components config tests/esp8266-apc-protocol.yaml
+          for YAML in tests/esp*.yaml; do
+            esphome -s external_components_source ../components config $YAML >/dev/null
+          done
 
   esphome-compile:
     runs-on: ubuntu-latest
