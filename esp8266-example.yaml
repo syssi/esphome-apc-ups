@@ -1,16 +1,15 @@
 substitutions:
   name: apc-ups
   device_description: "Monitor and control a APC UPS via RS232"
-  external_components_source: github://syssi/esphome-apc-ups@main
+  external_components_source: github://samoswall/esphome-apc-ups@main
   tx_pin: GPIO4
   rx_pin: GPIO5
 
 esphome:
   name: ${name}
   comment: ${device_description}
-  min_version: 2024.6.0
   project:
-    name: "syssi.esphome-apc-ups"
+    name: "samoswall.esphome-apc-ups"
     version: 1.0.0
 
 esp8266:
@@ -25,8 +24,6 @@ wifi:
   password: !secret wifi_password
 
 ota:
-  platform: esphome
-
 logger:
 
 # If you don't use Home Assistant please remove this `api` section and uncomment the `mqtt` component!
@@ -57,7 +54,7 @@ apc_ups:
 
 binary_sensor:
   - platform: apc_ups
-    apc_ups_id: ups0
+    apc_ups_id: ups1
     runtime_calibration:
       name: "${name} runtime calibration"
     smart_trim:
@@ -79,7 +76,7 @@ binary_sensor:
 
 switch:
   - platform: apc_ups
-    apc_ups_id: ups0
+    apc_ups_id: ups1
     front_panel_test:
       name: "${name} front panel test"
     simulate_power_failure:
@@ -88,10 +85,22 @@ switch:
       name: "${name} self test"
     start_runtime_calibration:
       name: "${name} start runtime calibration"
+    save_last_battery_change_date:
+      name: "${name} save last battery change date"
+    shutdown_with_grace_period:
+      name: "${name} shutdown with grace period"
+    soft_shutdown:
+      name: "${name} soft shutdown"
+    shutdown_immediately:
+      name: "${name} shutdown immediately"
+    turn_on:
+      name: "${name} turn on"
+  - platform: restart
+    name: "${devicename} restart"
 
 sensor:
   - platform: apc_ups
-    apc_ups_id: ups0
+    apc_ups_id: ups1
     battery_voltage:
       name: "${name} battery voltage"
     grid_frequency:
@@ -110,8 +119,8 @@ sensor:
       name: "${name} estimated runtime"
     internal_temperature:
       name: "${name} internal temperature"
-    ambient_temperature:
-      name: "${name} ambient temperature"
+#    ambient_temperature:
+#      name: "${name} ambient temperature"
     max_grid_voltage:
       name: "${name} max grid voltage"
     min_grid_voltage:
@@ -121,19 +130,28 @@ sensor:
     nominal_output_voltage:
       name: "${name} nominal output voltage"
 
+  - platform: wifi_signal
+    name: "${devicename} wifi signal"
+    update_interval: 600s
+
+  - platform: uptime
+    name: "${devicename} Uptime in Days"
+    id: uptime_sensor_days
+    update_interval: 60s
+
+
 text_sensor:
   - platform: apc_ups
-    apc_ups_id: ups0
+    apc_ups_id: ups1
     cause_of_last_transfer:
       name: "${name} cause of last transfer"
-    # Could cause a connection reset of the Home Assistant API connection
-    # See https://github.com/syssi/esphome-apc-ups/issues/1
-    #
-    # protocol_info:
-    #   name: "${name} protocol info"
+#    protocol_info:
+#      name: "${name} protocol info"
     firmware_revision:
+      id: "myfirmware"
       name: "${name} firmware revision"
     old_firmware_version:
+      id: myoldfirmware
       name: "${name} old firmware version"
     manufacture_date:
       name: "${name} manufacture date"
@@ -147,3 +165,32 @@ text_sensor:
       name: "${name} self test results"
     model_name:
       name: "${name} model name"
+    last_battery_change_new_date:
+      name: "${name} last battery change new date"
+
+  - platform: version
+    name: "$devicename Version"
+
+  - platform: wifi_info
+    ip_address:
+      name: "$devicename IP"
+    bssid:
+      name: "$devicename BSSID"
+
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: Europe/Moscow
+
+
+datetime:
+  - platform: template
+    id: my_datetime_date
+    type: date
+    name: Change battery date
+    optimistic: yes
+    on_value:
+      then:
+        - lambda: |-
+           id(ups1).set_last_battery_change_new_date(x.strftime("%m/%d/%y"));
