@@ -12,13 +12,14 @@ void ApcUpsSwitch::write_state(bool state) {
   if (state) {
     if (this->on_command_.length() > 0) {
       this->parent_->switch_command(this->on_command_);
+      this->publish_state(true);
     }
   } else {
     if (this->off_command_.length() > 0) {
       this->parent_->switch_command(this->off_command_);
+      this->publish_state(false);
     }
   }
-  this->publish_state(state);
 }
 
 }  // namespace apc_ups
