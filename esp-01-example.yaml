@@ -23,6 +23,8 @@ ota:
   password: "12345678"
 
 api:
+  encryption:
+    key: "lyDiTM3qkRehqgzNH0baLFRxm1oDTO4Ve4VPstCImu4="
 
 logger:
   level: NONE
