@@ -24,7 +24,7 @@ ota:
 
 api:
   encryption:
-    key: "lyDiTM3qkRehqgzNH0baLFRxm1oDTO4Ve4VPstCImu4="
+    key: "rbwt+vsrxKOwf6FH53vbMI7TCEvzTiQnn8p2jR9fySY="
 
 logger:
   level: NONE
