@@ -7,25 +7,26 @@ from .. import APC_UPS_COMPONENT_SCHEMA, CONF_APC_UPS_ID, apc_ups_ns
 
 DEPENDENCIES = ["uart"]
 
-# CONF_BEEPER = "beeper"
-CONF_QUICK_TEST = "quick_test"
-CONF_DEEP_TEST = "deep_test"
-CONF_TEN_MINUTES_TEST = "ten_minutes_test"
-
 CONF_FRONT_PANEL_TEST = "front_panel_test"
 CONF_SELF_TEST = "self_test"
 CONF_START_RUNTIME_CALIBRATION = "start_runtime_calibration"
 CONF_SIMULATE_POWER_FAILURE = "simulate_power_failure"
+CONF_SAVE_LAST_BATTERY_CHANGE_DATE = "save_last_battery_change_date"
+CONF_SHUTDOWN_WITH_GRACE_PERIOD = "shutdown_with_grace_period"
+CONF_SOFT_SHUTDOWN = "soft_shutdown"
+CONF_SHUTDOWN_IMMEDIATELY = "shutdown_immediately"
+CONF_TURN_ON = "turn_on"
 
 TYPES = {
-    CONF_BEEPER: ("Q", "Q"),
-    CONF_QUICK_TEST: ("T", "CT"),
-    CONF_DEEP_TEST: ("TL", "CT"),
-    CONF_TEN_MINUTES_TEST: ("T10", "CT"),
     CONF_FRONT_PANEL_TEST: ("A", None),
     CONF_SELF_TEST: ("W", None),
     CONF_START_RUNTIME_CALIBRATION: ("D", "D"),
     CONF_SIMULATE_POWER_FAILURE: ("U", None),
+    CONF_SAVE_LAST_BATTERY_CHANGE_DATE: ("SDATE", None),
+    CONF_SHUTDOWN_WITH_GRACE_PERIOD: ("K", None),
+    CONF_SOFT_SHUTDOWN: ("S", None),
+    CONF_SHUTDOWN_IMMEDIATELY: ("Z", None),
+    CONF_TURN_ON: ("CTRL_N", None),
 }
 
 ApcUpsSwitch = apc_ups_ns.class_("ApcUpsSwitch", switch.Switch, cg.Component)
