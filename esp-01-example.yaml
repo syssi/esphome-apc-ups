@@ -23,8 +23,6 @@ ota:
   password: "12345678"
 
 api:
-  encryption:
-    key: !secret key_apc_ups
 
 logger:
   level: NONE
