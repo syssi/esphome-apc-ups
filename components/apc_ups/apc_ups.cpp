@@ -87,7 +87,6 @@ void ApcUps::loop() {
   }
 
   if (this->state_ == STATE_POLL_DECODED) {
-    std::string mode;
     switch (this->used_polling_commands_[this->last_polling_command_].identifier) {
       case POLLING_Y:
         this->publish_state_(this->smart_mode_, value_smart_mode_);
@@ -204,7 +203,6 @@ void ApcUps::loop() {
   }
 
   if (this->state_ == STATE_POLL_CHECKED) {
-    std::string fc;
     char tmp[APC_UPS_READ_BUFFER_LENGTH];
     sprintf(tmp, "%s", this->read_buffer_);
     switch (this->used_polling_commands_[this->last_polling_command_].identifier) {
@@ -471,7 +469,7 @@ uint8_t ApcUps::check_incoming_length_(uint8_t length) {
 
 // send next command used
 uint8_t ApcUps::send_next_command_() {
-  if (this->command_queue_[this->command_queue_position_].length() != 0) {
+  if (!this->command_queue_[this->command_queue_position_].empty()) {
     const char *command = this->command_queue_[this->command_queue_position_].c_str();
     uint8_t byte_command[16];
     uint8_t length = this->command_queue_[this->command_queue_position_].length();
@@ -515,7 +513,7 @@ void ApcUps::queue_command_(const char *command, uint8_t length) {
   uint8_t next_position = command_queue_position_;
   for (uint8_t i = 0; i < COMMAND_QUEUE_LENGTH; i++) {
     uint8_t testposition = (next_position + i) % COMMAND_QUEUE_LENGTH;
-    if (command_queue_[testposition].length() == 0) {
+    if (command_queue_[testposition].empty()) {
       command_queue_[testposition] = command;
       ESP_LOGD(TAG, "Command queued successfully: %s with length %u at position %d", command,
                command_queue_[testposition].length(), testposition);
