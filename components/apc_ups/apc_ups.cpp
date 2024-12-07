@@ -490,10 +490,10 @@ uint8_t ApcUps::send_next_command_() {
 
 void ApcUps::send_next_poll_() {
   this->last_polling_command_ = (this->last_polling_command_ + 1) % 32;
-  if (this->used_polling_commands_[this->last_polling_command_].empty()) {
+  if (this->used_polling_commands_[this->last_polling_command_].length == 0) {
     this->last_polling_command_ = 0;
   }
-  if (this->used_polling_commands_[this->last_polling_command_].empty()) {
+  if (this->used_polling_commands_[this->last_polling_command_].length == 0) {
     // no command specified
     return;
   }
