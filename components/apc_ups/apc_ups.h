@@ -22,21 +22,21 @@ enum ENUMPollingCommand {
   POLLING_G = 7,         // Cause of last transfer to battery
   POLLING_I = 8,         // Measure-UPS alarm enable @TODO
   POLLING_J = 9,         // Measure-UPS alarm status @TODO
-  POLLING_K = 10,        // Shutdown with grace period (no return) @TODO
+  POLLING_K = 10,        // Shutdown with grace period (no return) ---------------------------- @NEW
   POLLING_L = 11,        // Input line voltage
   POLLING_M = 12,        // Maximum line voltage
   POLLING_N = 13,        // Minimum line voltage
   POLLING_O = 14,        // Output voltage
   POLLING_P = 15,        // Power load in %
   POLLING_Q = 16,        // Status flags
-  POLLING_R = 17,        // Turn dumb
-  POLLING_S = 18,        // Soft shutdown @TODO
+  POLLING_R = 17,        // Turn dumb @TODO
+  POLLING_S = 18,        // Soft shutdown ----------------------------------------------------- @NEW
   POLLING_U = 19,        // Simulate power failure
   POLLING_V = 20,        // Old firmware version
   POLLING_W = 21,        // Self test
   POLLING_X = 22,        // Self test results
-  POLLING_Z = 23,        // Shutdown immediately @TODO
-  POLLING_LOWER_A = 24,  // Protocol info
+  POLLING_Z = 23,        // Shutdown immediately ---------------------------------------------- @NEW
+  POLLING_LOWER_A = 24,  // Protocol info  @TODO
   POLLING_LOWER_B = 25,  // Firmware revision
   POLLING_LOWER_C = 26,  // UPS local identifier
   POLLING_LOWER_E = 27,  // Return threshold
@@ -57,11 +57,14 @@ enum ENUMPollingCommand {
   POLLING_LOWER_T = 42,  // Measure-UPS ambient temperature
   POLLING_LOWER_U = 43,  // Upper transfer voltage
   POLLING_LOWER_V = 44,  // Measure-UPS firmware
-  POLLING_LOWER_X = 45,  // Last battery change date
+  POLLING_LOWER_X = 45,  // Last battery change date ------------------------------------------ @NEW 
   POLLING_LOWER_Y = 46,  // Copyright notice
   POLLING_LOWER_Z = 47,  // Reset to factory settings @TODO
   POLLING_9 = 48,        // Line quality
-  POLLING_CTRL_A = 49,   // Model name @TODO
+  POLLING_CTRL_A = 49,   // Model name
+  POLLING_DATE = 50,     // New battery change date before saving ----------------------------- @NEW
+  POLLING_SDATE = 51,    // Save last battery change date ------------------------------------- @NEW
+  POLLING_CTRL_N = 52,   // Turn ON UPS ------------------------------------------------------- @NEW
 };
 struct PollingCommand {
   uint8_t *command;
@@ -83,11 +86,13 @@ struct PollingCommand {
   void set_##name(type *name) { /* NOLINT */ \
     this->name##_ = name; \
     this->add_polling_command_(#polling_command, POLLING_##ident); \
-  }
+  } \
+
 
 #define APC_UPS_SENSOR(name, ident, polling_command, value_type) \
   APC_UPS_VALUED_ENTITY_(sensor::Sensor, name, ident, polling_command, value_type)
-#define APC_UPS_SWITCH(name, ident, polling_command) APC_UPS_ENTITY_(switch_::Switch, name, ident, polling_command)
+#define APC_UPS_SWITCH(name, ident, polling_command) \
+  APC_UPS_ENTITY_(switch_::Switch, name, ident, polling_command)
 #define APC_UPS_VALUED_SWITCH(name, ident, polling_command, value_type) \
   APC_UPS_VALUED_ENTITY_(switch_::Switch, name, ident, polling_command, value_type)
 #define APC_UPS_VALUED_BINARY_SENSOR(name, ident, polling_command, value_type) \
@@ -96,7 +101,7 @@ struct PollingCommand {
   APC_UPS_ENTITY_(binary_sensor::BinarySensor, name, ident, polling_command)
 #define APC_UPS_VALUED_TEXT_SENSOR(name, ident, polling_command, value_type) \
   APC_UPS_VALUED_ENTITY_(text_sensor::TextSensor, name, ident, polling_command, value_type)
-#define APC_UPS_TEXT_SENSOR(name, polling_command) \
+#define APC_UPS_TEXT_SENSOR(name, ident, polling_command) \
   APC_UPS_ENTITY_(text_sensor::TextSensor, name, ident, polling_command)
 
 class ApcUps : public uart::UARTDevice, public PollingComponent {
@@ -133,31 +138,39 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   APC_UPS_VALUED_TEXT_SENSOR(protocol_info, LOWER_A, a, std::string)
   APC_UPS_VALUED_TEXT_SENSOR(firmware_revision, LOWER_B, b, std::string)
   APC_UPS_VALUED_TEXT_SENSOR(local_identifier, LOWER_C, c, std::string)
-  APC_UPS_VALUED_TEXT_SENSOR(alarm_delay, LOWER_K, k, std::string)
+  APC_UPS_VALUED_TEXT_SENSOR(alarm_delay, LOWER_K, k , std::string)
   APC_UPS_VALUED_TEXT_SENSOR(manufacture_date, LOWER_M, m, std::string)
   APC_UPS_VALUED_TEXT_SENSOR(serial_number, LOWER_N, n, std::string)
   APC_UPS_SENSOR(ambient_temperature, LOWER_T, t, float)
-  APC_UPS_VALUED_TEXT_SENSOR(measure_upc_firmware, LOWER_V, v, std::string)
+  APC_UPS_VALUED_TEXT_SENSOR(measure_upc_firmware, LOWER_V, v , std::string)
   APC_UPS_VALUED_TEXT_SENSOR(last_battery_change_date, LOWER_X, x, std::string)
   APC_UPS_VALUED_TEXT_SENSOR(copyright_notice, LOWER_Y, Y, std::string)
-  APC_UPS_VALUED_TEXT_SENSOR(line_quality, 9, 9, std::string)
-  APC_UPS_VALUED_TEXT_SENSOR(model_name, CTRL_A, "\x01", std::string)
-
+  APC_UPS_VALUED_TEXT_SENSOR(line_quality, 9 , 9, std::string)
+  APC_UPS_VALUED_TEXT_SENSOR(model_name, CTRL_A, CTRL_A, std::string)
+  APC_UPS_TEXT_SENSOR(last_battery_change_new_date, DATE, DATE) //                              New battery change date before saving
+  
   APC_UPS_VALUED_SWITCH(front_panel_test, A, A, bool)
   APC_UPS_VALUED_SWITCH(self_test, W, W, bool)
   APC_UPS_VALUED_SWITCH(start_runtime_calibration, D, D, bool)
   APC_UPS_VALUED_SWITCH(simulate_power_failure, U, U, bool)
+  APC_UPS_VALUED_SWITCH(save_last_battery_change_date, SDATE, SDATE, bool) //                   Save last battery change date
+  APC_UPS_VALUED_SWITCH(shutdown_with_grace_period, K, K, bool) //                              Shutdown with grace period
+  APC_UPS_VALUED_SWITCH(soft_shutdown, S, S, bool) //                                           Soft shutdown
+  APC_UPS_SWITCH(shutdown_immediately, Z, Z) //                                                 Shutdown immediately
+  APC_UPS_VALUED_SWITCH(turn_on, CTRL_N, CTRL_N, bool) //                                       Turn ON
 
   void switch_command(const std::string &command);
   void setup() override;
   void loop() override;
   void dump_config() override;
   void update() override;
+  
+  void set_last_battery_change_new_date(std::string value); //                                  Set New battery change date before saving
 
  protected:
   static const size_t APC_UPS_READ_BUFFER_LENGTH = 110;  // maximum supported answer length
   static const size_t COMMAND_QUEUE_LENGTH = 10;
-  static const size_t COMMAND_TIMEOUT = 1000;
+  static const size_t COMMAND_TIMEOUT = 1600; //                                                For send two bytes command (pause between commands for more than 1.5 seconds)
   uint32_t last_poll_ = 0;
   void publish_state_(binary_sensor::BinarySensor *binary_sensor, const bool &state);
   void publish_state_(sensor::Sensor *sensor, float value);
@@ -176,6 +189,10 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   uint8_t read_buffer_[APC_UPS_READ_BUFFER_LENGTH];
   size_t read_pos_{0};
 
+  uint8_t multibyte_command_ = 0; //                                                            State - Sending a multibyte command
+  const char *command_ctrl_a = "\x01";
+  const char *command_ctrl_n = "\x0E";
+
   uint32_t command_start_millis_ = 0;
   uint8_t state_;
   enum State {
@@ -189,7 +206,7 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   };
 
   uint8_t last_polling_command_ = 0;
-  PollingCommand used_polling_commands_[41];
+  PollingCommand used_polling_commands_[42];
 };
 
 }  // namespace apc_ups
