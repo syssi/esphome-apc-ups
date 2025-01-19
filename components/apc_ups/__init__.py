@@ -5,7 +5,7 @@ from esphome.const import CONF_ID
 
 DEPENDENCIES = ["uart"]
 CODEOWNERS = ["@syssi"]
-AUTO_LOAD = ["binary_sensor", "text_sensor", "sensor", "switch"]
+AUTO_LOAD = ["binary_sensor", "sensor", "switch", "text_sensor"]
 MULTI_CONF = True
 
 CONF_APC_UPS_ID = "apc_ups_id"
