@@ -30,12 +30,12 @@ TYPES = {
 
 ApcUpsSwitch = apc_ups_ns.class_("ApcUpsSwitch", switch.Switch, cg.Component)
 
-PIPSWITCH_SCHEMA = switch.switch_schema(
+APC_UPS_SWITCH_SCHEMA = switch.switch_schema(
     ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
 ).extend(cv.COMPONENT_SCHEMA)
 
 CONFIG_SCHEMA = APC_UPS_COMPONENT_SCHEMA.extend(
-    {cv.Optional(type): PIPSWITCH_SCHEMA for type in TYPES}
+    {cv.Optional(type): APC_UPS_SWITCH_SCHEMA for type in TYPES}
 )
 
 
