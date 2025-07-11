@@ -535,6 +535,50 @@ void ApcUps::dump_config() {
       ESP_LOGCONFIG(TAG, "%s", used_polling_command.command);
     }
   }
+
+  LOG_SENSOR("", "Battery Voltage", this->battery_voltage_);
+  LOG_SENSOR("", "Internal Temperature", this->internal_temperature_);
+  LOG_SENSOR("", "Grid Frequency", this->grid_frequency_);
+  LOG_SENSOR("", "Grid Voltage", this->grid_voltage_);
+  LOG_SENSOR("", "Max Grid Voltage", this->max_grid_voltage_);
+  LOG_SENSOR("", "Min Grid Voltage", this->min_grid_voltage_);
+  LOG_SENSOR("", "AC Output Voltage", this->ac_output_voltage_);
+  LOG_SENSOR("", "AC Output Load", this->ac_output_load_);
+  LOG_SENSOR("", "Status Bitmask", this->status_bitmask_);
+  LOG_SENSOR("", "Ambient Humidity", this->ambient_humidity_);
+  LOG_SENSOR("", "Return Threshold", this->return_threshold_);
+  LOG_SENSOR("", "State Of Charge", this->state_of_charge_);
+  LOG_SENSOR("", "Nominal Battery Voltage", this->nominal_battery_voltage_);
+  LOG_SENSOR("", "Estimated Runtime", this->estimated_runtime_);
+  LOG_SENSOR("", "Low Transfer Voltage", this->low_transfer_voltage_);
+  LOG_SENSOR("", "Nominal Output Voltage", this->nominal_output_voltage_);
+  LOG_SENSOR("", "Upper Transfer Voltage", this->upper_transfer_voltage_);
+  LOG_SENSOR("", "Ambient Temperature", this->ambient_temperature_);
+
+  LOG_BINARY_SENSOR("", "Smart Mode", this->smart_mode_);
+  LOG_BINARY_SENSOR("", "Runtime Calibration", this->runtime_calibration_);
+  LOG_BINARY_SENSOR("", "Smart Trim", this->smart_trim_);
+  LOG_BINARY_SENSOR("", "Smart Boost", this->smart_boost_);
+  LOG_BINARY_SENSOR("", "On Line", this->on_line_);
+  LOG_BINARY_SENSOR("", "On Battery", this->on_battery_);
+  LOG_BINARY_SENSOR("", "Output Overloaded", this->output_overloaded_);
+  LOG_BINARY_SENSOR("", "Battery Low", this->battery_low_);
+  LOG_BINARY_SENSOR("", "Replace Battery", this->replace_battery_);
+
+  LOG_TEXT_SENSOR("", "Cause Of Last Transfer", this->cause_of_last_transfer_);
+  LOG_TEXT_SENSOR("", "Old Firmware Version", this->old_firmware_version_);
+  LOG_TEXT_SENSOR("", "Self Test Results", this->self_test_results_);
+  LOG_TEXT_SENSOR("", "Protocol Info", this->protocol_info_);
+  LOG_TEXT_SENSOR("", "Firmware Revision", this->firmware_revision_);
+  LOG_TEXT_SENSOR("", "Local Identifier", this->local_identifier_);
+  LOG_TEXT_SENSOR("", "Alarm Delay", this->alarm_delay_);
+  LOG_TEXT_SENSOR("", "Manufacture Date", this->manufacture_date_);
+  LOG_TEXT_SENSOR("", "Serial Number", this->serial_number_);
+  LOG_TEXT_SENSOR("", "Measure UPC Firmware", this->measure_upc_firmware_);
+  LOG_TEXT_SENSOR("", "Last Battery Change Date", this->last_battery_change_date_);
+  LOG_TEXT_SENSOR("", "Copyright Notice", this->copyright_notice_);
+  LOG_TEXT_SENSOR("", "Line Quality", this->line_quality_);
+  LOG_TEXT_SENSOR("", "Model Name", this->model_name_);
 }
 void ApcUps::update() {}
 
