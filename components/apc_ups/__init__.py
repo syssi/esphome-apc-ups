@@ -20,9 +20,10 @@ APC_UPS_COMPONENT_SCHEMA = cv.Schema(
 )
 
 CONFIG_SCHEMA = cv.All(
+    cv.require_esphome_version(2024, 12, 0),
     cv.Schema({cv.GenerateID(): cv.declare_id(ApcUpsComponent)})
     .extend(cv.polling_component_schema("1s"))
-    .extend(uart.UART_DEVICE_SCHEMA)
+    .extend(uart.UART_DEVICE_SCHEMA),
 )
 
 
