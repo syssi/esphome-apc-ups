@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 from esphome.components import switch
 import esphome.config_validation as cv
-from esphome.const import CONF_BEEPER, ICON_POWER
+from esphome.const import CONF_BEEPER, ENTITY_CATEGORY_CONFIG, ICON_POWER
 
 from .. import APC_UPS_COMPONENT_SCHEMA, CONF_APC_UPS_ID, apc_ups_ns
 
@@ -34,8 +34,24 @@ APC_UPS_SWITCH_SCHEMA = switch.switch_schema(
     ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
 ).extend(cv.COMPONENT_SCHEMA)
 
+APC_UPS_CONFIG_SWITCH_SCHEMA = switch.switch_schema(
+    ApcUpsSwitch,
+    icon=ICON_POWER,
+    block_inverted=True,
+    entity_category=ENTITY_CATEGORY_CONFIG,
+).extend(cv.COMPONENT_SCHEMA)
+
 CONFIG_SCHEMA = APC_UPS_COMPONENT_SCHEMA.extend(
-    {cv.Optional(type): APC_UPS_SWITCH_SCHEMA for type in TYPES}
+    {
+        cv.Optional(CONF_BEEPER): APC_UPS_CONFIG_SWITCH_SCHEMA,
+        cv.Optional(CONF_QUICK_TEST): APC_UPS_SWITCH_SCHEMA,
+        cv.Optional(CONF_DEEP_TEST): APC_UPS_SWITCH_SCHEMA,
+        cv.Optional(CONF_TEN_MINUTES_TEST): APC_UPS_SWITCH_SCHEMA,
+        cv.Optional(CONF_FRONT_PANEL_TEST): APC_UPS_SWITCH_SCHEMA,
+        cv.Optional(CONF_SELF_TEST): APC_UPS_SWITCH_SCHEMA,
+        cv.Optional(CONF_START_RUNTIME_CALIBRATION): APC_UPS_SWITCH_SCHEMA,
+        cv.Optional(CONF_SIMULATE_POWER_FAILURE): APC_UPS_SWITCH_SCHEMA,
+    }
 )
 
 
