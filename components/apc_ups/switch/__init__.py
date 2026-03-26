@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 from esphome.components import switch
 import esphome.config_validation as cv
-from esphome.const import CONF_BEEPER, ICON_POWER
+from esphome.const import CONF_BEEPER, ENTITY_CATEGORY_CONFIG, ICON_POWER
 
 from .. import APC_UPS_COMPONENT_SCHEMA, CONF_APC_UPS_ID, apc_ups_ns
 
@@ -30,12 +30,36 @@ TYPES = {
 
 ApcUpsSwitch = apc_ups_ns.class_("ApcUpsSwitch", switch.Switch, cg.Component)
 
-APC_UPS_SWITCH_SCHEMA = switch.switch_schema(
-    ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
-)
-
 CONFIG_SCHEMA = APC_UPS_COMPONENT_SCHEMA.extend(
-    {cv.Optional(type): APC_UPS_SWITCH_SCHEMA for type in TYPES}
+    {
+        cv.Optional(CONF_BEEPER): switch.switch_schema(
+            ApcUpsSwitch,
+            icon=ICON_POWER,
+            block_inverted=True,
+            entity_category=ENTITY_CATEGORY_CONFIG,
+        ),
+        cv.Optional(CONF_QUICK_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_DEEP_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_TEN_MINUTES_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_FRONT_PANEL_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_SELF_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_START_RUNTIME_CALIBRATION): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_SIMULATE_POWER_FAILURE): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+    }
 )
 
 
