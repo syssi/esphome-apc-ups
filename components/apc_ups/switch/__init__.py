@@ -18,39 +18,27 @@ CONF_START_RUNTIME_CALIBRATION = "start_runtime_calibration"
 CONF_SIMULATE_POWER_FAILURE = "simulate_power_failure"
 
 TYPES = {
-    CONF_BEEPER: ("Q", "Q"),
-    CONF_QUICK_TEST: ("T", "CT"),
-    CONF_DEEP_TEST: ("TL", "CT"),
-    CONF_TEN_MINUTES_TEST: ("T10", "CT"),
-    CONF_FRONT_PANEL_TEST: ("A", None),
-    CONF_SELF_TEST: ("W", None),
-    CONF_START_RUNTIME_CALIBRATION: ("D", "D"),
-    CONF_SIMULATE_POWER_FAILURE: ("U", None),
+    CONF_BEEPER: ("Q", "Q", ENTITY_CATEGORY_CONFIG),
+    CONF_QUICK_TEST: ("T", "CT", None),
+    CONF_DEEP_TEST: ("TL", "CT", None),
+    CONF_TEN_MINUTES_TEST: ("T10", "CT", None),
+    CONF_FRONT_PANEL_TEST: ("A", None, None),
+    CONF_SELF_TEST: ("W", None, None),
+    CONF_START_RUNTIME_CALIBRATION: ("D", "D", None),
+    CONF_SIMULATE_POWER_FAILURE: ("U", None, None),
 }
 
 ApcUpsSwitch = apc_ups_ns.class_("ApcUpsSwitch", switch.Switch, cg.Component)
 
-APC_UPS_SWITCH_SCHEMA = switch.switch_schema(
-    ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
-).extend(cv.COMPONENT_SCHEMA)
-
-APC_UPS_CONFIG_SWITCH_SCHEMA = switch.switch_schema(
-    ApcUpsSwitch,
-    icon=ICON_POWER,
-    block_inverted=True,
-    entity_category=ENTITY_CATEGORY_CONFIG,
-).extend(cv.COMPONENT_SCHEMA)
-
 CONFIG_SCHEMA = APC_UPS_COMPONENT_SCHEMA.extend(
     {
-        cv.Optional(CONF_BEEPER): APC_UPS_CONFIG_SWITCH_SCHEMA,
-        cv.Optional(CONF_QUICK_TEST): APC_UPS_SWITCH_SCHEMA,
-        cv.Optional(CONF_DEEP_TEST): APC_UPS_SWITCH_SCHEMA,
-        cv.Optional(CONF_TEN_MINUTES_TEST): APC_UPS_SWITCH_SCHEMA,
-        cv.Optional(CONF_FRONT_PANEL_TEST): APC_UPS_SWITCH_SCHEMA,
-        cv.Optional(CONF_SELF_TEST): APC_UPS_SWITCH_SCHEMA,
-        cv.Optional(CONF_START_RUNTIME_CALIBRATION): APC_UPS_SWITCH_SCHEMA,
-        cv.Optional(CONF_SIMULATE_POWER_FAILURE): APC_UPS_SWITCH_SCHEMA,
+        cv.Optional(type): switch.switch_schema(
+            ApcUpsSwitch,
+            icon=ICON_POWER,
+            block_inverted=True,
+            **({} if cat is None else {"entity_category": cat}),
+        ).extend(cv.COMPONENT_SCHEMA)
+        for type, (_, _, cat) in TYPES.items()
     }
 )
 
@@ -58,7 +46,7 @@ CONFIG_SCHEMA = APC_UPS_COMPONENT_SCHEMA.extend(
 async def to_code(config):
     paren = await cg.get_variable(config[CONF_APC_UPS_ID])
 
-    for type, (on, off) in TYPES.items():
+    for type, (on, off, _) in TYPES.items():
         if type in config:
             conf = config[type]
             var = await switch.new_switch(conf)
