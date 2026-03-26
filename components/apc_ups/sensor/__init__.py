@@ -8,6 +8,7 @@ from esphome.const import (
     DEVICE_CLASS_HUMIDITY,
     DEVICE_CLASS_TEMPERATURE,
     DEVICE_CLASS_VOLTAGE,
+    ENTITY_CATEGORY_DIAGNOSTIC,
     ICON_CURRENT_AC,
     ICON_TIMELAPSE,
     STATE_CLASS_MEASUREMENT,
@@ -109,8 +110,8 @@ TYPES = {
         unit_of_measurement=UNIT_EMPTY,
         icon=ICON_OPERATION_STATUS_BITMASK,
         accuracy_decimals=0,
-        device_class=DEVICE_CLASS_EMPTY,
-        state_class=STATE_CLASS_MEASUREMENT,
+        device_class=None,
+        entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
     ),
     cv.Optional(CONF_STATE_OF_CHARGE): sensor.sensor_schema(
         unit_of_measurement=UNIT_PERCENT,
