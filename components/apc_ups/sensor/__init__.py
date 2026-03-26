@@ -4,7 +4,6 @@ import esphome.config_validation as cv
 from esphome.const import (
     CONF_BATTERY_VOLTAGE,
     CONF_INTERNAL_TEMPERATURE,
-    DEVICE_CLASS_EMPTY,
     DEVICE_CLASS_HUMIDITY,
     DEVICE_CLASS_TEMPERATURE,
     DEVICE_CLASS_VOLTAGE,
@@ -109,21 +108,21 @@ TYPES = {
         unit_of_measurement=UNIT_EMPTY,
         icon=ICON_OPERATION_STATUS_BITMASK,
         accuracy_decimals=0,
-        device_class=DEVICE_CLASS_EMPTY,
+        device_class=None,
         state_class=STATE_CLASS_MEASUREMENT,
     ),
     cv.Optional(CONF_STATE_OF_CHARGE): sensor.sensor_schema(
         unit_of_measurement=UNIT_PERCENT,
         icon=ICON_STATE_OF_CHARGE,
         accuracy_decimals=1,
-        device_class=DEVICE_CLASS_EMPTY,
+        device_class=None,
         state_class=STATE_CLASS_MEASUREMENT,
     ),
     cv.Optional(CONF_ESTIMATED_RUNTIME): sensor.sensor_schema(
         unit_of_measurement=UNIT_MINUTE,
         icon=ICON_TIMELAPSE,
         accuracy_decimals=0,
-        device_class=DEVICE_CLASS_EMPTY,
+        device_class=None,
         state_class=STATE_CLASS_TOTAL_INCREASING,
     ),
     cv.Optional(CONF_INTERNAL_TEMPERATURE): sensor.sensor_schema(
