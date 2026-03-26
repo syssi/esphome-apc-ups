@@ -110,7 +110,7 @@ TYPES = {
         unit_of_measurement=UNIT_EMPTY,
         icon=ICON_OPERATION_STATUS_BITMASK,
         accuracy_decimals=0,
-        device_class=None,
+        device_class=DEVICE_CLASS_EMPTY,
         entity_category=ENTITY_CATEGORY_DIAGNOSTIC,
     ),
     cv.Optional(CONF_STATE_OF_CHARGE): sensor.sensor_schema(
