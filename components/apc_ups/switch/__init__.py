@@ -32,14 +32,33 @@ ApcUpsSwitch = apc_ups_ns.class_("ApcUpsSwitch", switch.Switch, cg.Component)
 
 CONFIG_SCHEMA = APC_UPS_COMPONENT_SCHEMA.extend(
     {
-        cv.Optional(CONF_BEEPER): switch.switch_schema(ApcUpsSwitch, icon=ICON_POWER, block_inverted=True, entity_category=ENTITY_CATEGORY_CONFIG),
-        cv.Optional(CONF_QUICK_TEST): switch.switch_schema(ApcUpsSwitch, icon=ICON_POWER, block_inverted=True),
-        cv.Optional(CONF_DEEP_TEST): switch.switch_schema(ApcUpsSwitch, icon=ICON_POWER, block_inverted=True),
-        cv.Optional(CONF_TEN_MINUTES_TEST): switch.switch_schema(ApcUpsSwitch, icon=ICON_POWER, block_inverted=True),
-        cv.Optional(CONF_FRONT_PANEL_TEST): switch.switch_schema(ApcUpsSwitch, icon=ICON_POWER, block_inverted=True),
-        cv.Optional(CONF_SELF_TEST): switch.switch_schema(ApcUpsSwitch, icon=ICON_POWER, block_inverted=True),
-        cv.Optional(CONF_START_RUNTIME_CALIBRATION): switch.switch_schema(ApcUpsSwitch, icon=ICON_POWER, block_inverted=True),
-        cv.Optional(CONF_SIMULATE_POWER_FAILURE): switch.switch_schema(ApcUpsSwitch, icon=ICON_POWER, block_inverted=True),
+        cv.Optional(CONF_BEEPER): switch.switch_schema(
+            ApcUpsSwitch,
+            icon=ICON_POWER,
+            block_inverted=True,
+            entity_category=ENTITY_CATEGORY_CONFIG,
+        ),
+        cv.Optional(CONF_QUICK_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_DEEP_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_TEN_MINUTES_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_FRONT_PANEL_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_SELF_TEST): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_START_RUNTIME_CALIBRATION): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
+        cv.Optional(CONF_SIMULATE_POWER_FAILURE): switch.switch_schema(
+            ApcUpsSwitch, icon=ICON_POWER, block_inverted=True
+        ),
     }
 )
 
