@@ -24,6 +24,7 @@ from esphome.const import (
 from .. import APC_UPS_COMPONENT_SCHEMA, CONF_APC_UPS_ID
 
 DEPENDENCIES = ["uart"]
+CODEOWNERS = ["@syssi"]
 
 # CONF_BATTERY_VOLTAGE = "battery_voltage"
 CONF_GRID_FREQUENCY = "grid_frequency"
