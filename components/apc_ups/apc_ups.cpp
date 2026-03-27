@@ -579,7 +579,7 @@ void ApcUps::dump_config() {
   LOG_TEXT_SENSOR("", "Line Quality", this->line_quality_);
   LOG_TEXT_SENSOR("", "Model Name", this->model_name_);
 }
-void ApcUps::update() {}
+void ApcUps::update() { ESP_LOGW(TAG, "update() not implemented"); }
 
 void ApcUps::add_polling_command_(const char *command, ENUMPollingCommand polling_command) {
   for (auto &used_polling_command : this->used_polling_commands_) {
