@@ -5,6 +5,7 @@ substitutions:
 
 esphome:
   name: ${name}
+  friendly_name: ${name}
   comment: ${device_description}
 
 esp32:
@@ -44,4 +45,4 @@ sensor:
   - platform: apc_ups
     apc_ups_id: ups0
     battery_voltage:
-      name: "${name} battery voltage"
+      name: "battery voltage"

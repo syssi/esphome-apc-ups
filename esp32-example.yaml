@@ -7,6 +7,7 @@ substitutions:
 
 esphome:
   name: ${name}
+  friendly_name: ${name}
   comment: ${device_description}
   project:
     name: "syssi.esphome-apc-ups"
@@ -60,91 +61,91 @@ binary_sensor:
   - platform: apc_ups
     apc_ups_id: ups0
     runtime_calibration:
-      name: "${name} runtime calibration"
+      name: "runtime calibration"
     smart_trim:
-      name: "${name} smart trim"
+      name: "smart trim"
     smart_boost:
-      name: "${name} smart boost"
+      name: "smart boost"
     on_line:
-      name: "${name} on line"
+      name: "on line"
     on_battery:
-      name: "${name} on battery"
+      name: "on battery"
     output_overloaded:
-      name: "${name} output overloaded"
+      name: "output overloaded"
     battery_low:
-      name: "${name} battery low"
+      name: "battery low"
     replace_battery:
-      name: "${name} replace battery"
+      name: "replace battery"
     smart_mode:
-      name: "${name} smart mode"
+      name: "smart mode"
 
 switch:
   - platform: apc_ups
     apc_ups_id: ups0
     front_panel_test:
-      name: "${name} front panel test"
+      name: "front panel test"
     simulate_power_failure:
-      name: "${name} simulate power failure"
+      name: "simulate power failure"
     self_test:
-      name: "${name} self test"
+      name: "self test"
     start_runtime_calibration:
-      name: "${name} start runtime calibration"
+      name: "start runtime calibration"
 
 sensor:
   - platform: apc_ups
     apc_ups_id: ups0
     battery_voltage:
-      name: "${name} battery voltage"
+      name: "battery voltage"
     grid_frequency:
-      name: "${name} grid frequency"
+      name: "grid frequency"
     grid_voltage:
-      name: "${name} grid voltage"
+      name: "grid voltage"
     ac_output_voltage:
-      name: "${name} ac output voltage"
+      name: "ac output voltage"
     ac_output_load:
-      name: "${name} ac output load"
+      name: "ac output load"
     status_bitmask:
-      name: "${name} status bitmask"
+      name: "status bitmask"
     state_of_charge:
-      name: "${name} state of charge"
+      name: "state of charge"
     estimated_runtime:
-      name: "${name} estimated runtime"
+      name: "estimated runtime"
     internal_temperature:
-      name: "${name} internal temperature"
+      name: "internal temperature"
     ambient_temperature:
-      name: "${name} ambient temperature"
+      name: "ambient temperature"
     max_grid_voltage:
-      name: "${name} max grid voltage"
+      name: "max grid voltage"
     min_grid_voltage:
-      name: "${name} min grid voltage"
+      name: "min grid voltage"
     nominal_battery_voltage:
-      name: "${name} nominal battery voltage"
+      name: "nominal battery voltage"
     nominal_output_voltage:
-      name: "${name} nominal output voltage"
+      name: "nominal output voltage"
 
 text_sensor:
   - platform: apc_ups
     apc_ups_id: ups0
     cause_of_last_transfer:
-      name: "${name} cause of last transfer"
+      name: "cause of last transfer"
     # Could cause a connection reset of the Home Assistant API connection
     # See https://github.com/syssi/esphome-apc-ups/issues/1
     #
     # protocol_info:
-    #   name: "${name} protocol info"
+    #   name: "protocol info"
     firmware_revision:
-      name: "${name} firmware revision"
+      name: "firmware revision"
     old_firmware_version:
-      name: "${name} old firmware version"
+      name: "old firmware version"
     manufacture_date:
-      name: "${name} manufacture date"
+      name: "manufacture date"
     last_battery_change_date:
-      name: "${name} last battery change date"
+      name: "last battery change date"
     local_identifier:
-      name: "${name} local identifier"
+      name: "local identifier"
     serial_number:
-      name: "${name} serial number"
+      name: "serial number"
     self_test_results:
-      name: "${name} self test results"
+      name: "self test results"
     model_name:
-      name: "${name} model name"
+      name: "model name"
