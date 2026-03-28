@@ -44,4 +44,4 @@ sensor:
   - platform: apc_ups
     apc_ups_id: ups0
     battery_voltage:
-      name: "${name} battery voltage"
+      name: "battery voltage"
