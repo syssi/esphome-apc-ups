@@ -104,4 +104,3 @@
 [14:43:49][I][main:887]: Line quality
 [14:43:49][D][uart_debug:158]: >>> "9"
 [14:43:49][D][uart_debug:158]: <<< "FF\r\n"
-
