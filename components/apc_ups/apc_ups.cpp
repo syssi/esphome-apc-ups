@@ -1,8 +1,7 @@
 #include "apc_ups.h"
 #include "esphome/core/log.h"
 
-namespace esphome {
-namespace apc_ups {
+namespace esphome::apc_ups {
 
 static const char *const TAG = "apc_ups";
 
@@ -638,5 +637,4 @@ void ApcUps::publish_state_(text_sensor::TextSensor *text_sensor, const std::str
   text_sensor->publish_state(state);
 }
 
-}  // namespace apc_ups
-}  // namespace esphome
+}  // namespace esphome::apc_ups

@@ -2,8 +2,7 @@
 #include "esphome/core/log.h"
 #include "esphome/core/application.h"
 
-namespace esphome {
-namespace apc_ups {
+namespace esphome::apc_ups {
 
 static const char *const TAG = "apc_ups.switch";
 
@@ -21,5 +20,4 @@ void ApcUpsSwitch::write_state(bool state) {
   this->publish_state(state);
 }
 
-}  // namespace apc_ups
-}  // namespace esphome
+}  // namespace esphome::apc_ups

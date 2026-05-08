@@ -8,8 +8,7 @@
 #include "esphome/core/automation.h"
 #include "esphome/core/component.h"
 
-namespace esphome {
-namespace apc_ups {
+namespace esphome::apc_ups {
 
 enum ENUMPollingCommand {
   POLLING_Y = 0,         // Enable smart mode
@@ -192,5 +191,4 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   PollingCommand used_polling_commands_[41];
 };
 
-}  // namespace apc_ups
-}  // namespace esphome
+}  // namespace esphome::apc_ups

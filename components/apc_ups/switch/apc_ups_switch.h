@@ -4,8 +4,7 @@
 #include "esphome/components/switch/switch.h"
 #include "esphome/core/component.h"
 
-namespace esphome {
-namespace apc_ups {
+namespace esphome::apc_ups {
 class ApcUps;
 class ApcUpsSwitch : public switch_::Switch, public Component {
  public:
@@ -21,5 +20,4 @@ class ApcUpsSwitch : public switch_::Switch, public Component {
   ApcUps *parent_;
 };
 
-}  // namespace apc_ups
-}  // namespace esphome
+}  // namespace esphome::apc_ups
