@@ -1,5 +1,6 @@
 #include "apc_ups.h"
 #include "esphome/core/log.h"
+#include <cstring>
 
 namespace esphome::apc_ups {
 
@@ -202,7 +203,8 @@ void ApcUps::loop() {
   }
 
   if (this->state_ == STATE_POLL_CHECKED) {
-    const char *tmp = reinterpret_cast<char *>(this->read_buffer_);
+    char *tmp = reinterpret_cast<char *>(this->read_buffer_);
+    tmp[strcspn(tmp, "\r\n")] = '\0';
     switch (this->used_polling_commands_[this->last_polling_command_].identifier) {
       case POLLING_Y:
         ESP_LOGD(TAG, "Decode Y");
@@ -212,19 +214,19 @@ void ApcUps::loop() {
       case POLLING_B:
         ESP_LOGD(TAG, "Decode B");
         // "13.61\r\n"
-        sscanf(tmp, "%f", &value_battery_voltage_);  // NOLINT
+        value_battery_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_C:
         ESP_LOGD(TAG, "Decode C");
         // "36\r\n"
-        sscanf(tmp, "%f", &value_internal_temperature_);  // NOLINT
+        value_internal_temperature_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_F:
         ESP_LOGD(TAG, "Decode F");
         // "50.00\r\n"
-        sscanf(tmp, "%f", &value_grid_frequency_);  // NOLINT
+        value_grid_frequency_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_G:
@@ -236,31 +238,31 @@ void ApcUps::loop() {
       case POLLING_L:
         ESP_LOGD(TAG, "Decode L");
         // "231.8\r\n"
-        sscanf(tmp, "%f", &value_grid_voltage_);  // NOLINT
+        value_grid_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_M:
         ESP_LOGD(TAG, "Decode M");
         // "231.8\r\n"
-        sscanf(tmp, "%f", &value_max_grid_voltage_);  // NOLINT
+        value_max_grid_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_N:
         ESP_LOGD(TAG, "Decode N");
         // "231.8\r\n"
-        sscanf(tmp, "%f", &value_min_grid_voltage_);  // NOLINT
+        value_min_grid_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_O:
         ESP_LOGD(TAG, "Decode O");
         // "231.8\r\n"
-        sscanf(tmp, "%f", &value_ac_output_voltage_);  // NOLINT
+        value_ac_output_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_P:
         ESP_LOGD(TAG, "Decode P");
         // "009.1\r\n"
-        sscanf(tmp, "%f", &value_ac_output_load_);  // NOLINT
+        value_ac_output_load_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_V:
@@ -272,7 +274,7 @@ void ApcUps::loop() {
       case POLLING_Q:
         ESP_LOGD(TAG, "Decode Q");
         // "08\r\n"
-        sscanf(tmp, "%x", &value_status_bitmask_);  // NOLINT
+        value_status_bitmask_ = strtoul(tmp, nullptr, 16);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_X:
@@ -302,31 +304,32 @@ void ApcUps::loop() {
       case POLLING_LOWER_E:
         ESP_LOGD(TAG, "Decode e");
         // "53.8\r\n"
-        sscanf(tmp, "%f", &value_return_threshold_);  // NOLINT
+        value_return_threshold_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_F:
         ESP_LOGD(TAG, "Decode f");
         // "100.0\r\n"
-        sscanf(tmp, "%f", &value_state_of_charge_);  // NOLINT
+        value_state_of_charge_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_G:
         ESP_LOGD(TAG, "Decode g");
         // "53.8\r\n"
-        sscanf(tmp, "%f", &value_nominal_battery_voltage_);  // NOLINT
+        value_nominal_battery_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_H:
         ESP_LOGD(TAG, "Decode h");
         // "100.0\r\n"
-        sscanf(tmp, "%f", &value_ambient_humidity_);  // NOLINT
+        value_ambient_humidity_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_J:
         ESP_LOGD(TAG, "Decode j");
         // "0042:\r\n"
-        sscanf(tmp, "%f:", &value_estimated_runtime_);  // NOLINT
+        tmp[strcspn(tmp, ":")] = '\0';
+        value_estimated_runtime_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_K:
@@ -338,7 +341,7 @@ void ApcUps::loop() {
       case POLLING_LOWER_L:
         ESP_LOGD(TAG, "Decode l");
         // "80.5\r\n"
-        sscanf(tmp, "%f", &value_low_transfer_voltage_);  // NOLINT
+        value_low_transfer_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_M:
@@ -356,19 +359,19 @@ void ApcUps::loop() {
       case POLLING_LOWER_O:
         ESP_LOGD(TAG, "Decode o");
         // "80.5\r\n"
-        sscanf(tmp, "%f", &value_nominal_output_voltage_);  // NOLINT
+        value_nominal_output_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_T:
         ESP_LOGD(TAG, "Decode t");
         // "80.5\r\n"
-        sscanf(tmp, "%f", &value_ambient_temperature_);  // NOLINT
+        value_ambient_temperature_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_U:
         ESP_LOGD(TAG, "Decode u");
         // "80.5\r\n"
-        sscanf(tmp, "%f", &value_upper_transfer_voltage_);  // NOLINT
+        value_upper_transfer_voltage_ = parse_number<float>(tmp).value_or(NAN);
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_LOWER_V:
