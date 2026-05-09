@@ -1,0 +1,7 @@
+uart:
+  - id: uart_bus
+    baud_rate: 2400
+
+apc_ups:
+  id: test_apc
+  uart_id: uart_bus
