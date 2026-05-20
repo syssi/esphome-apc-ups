@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <sstream>
 #include "esphome/components/binary_sensor/binary_sensor.h"
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/components/text_sensor/text_sensor.h"
@@ -33,6 +34,7 @@ class ApcUpsDecodeTest : public ::testing::Test {
   binary_sensor::BinarySensor on_battery_;
   binary_sensor::BinarySensor replace_battery_;
   text_sensor::TextSensor status_;
+  text_sensor::TextSensor protocol_info_;
   text_sensor::TextSensor firmware_revision_;
   text_sensor::TextSensor local_identifier_;
   text_sensor::TextSensor manufacture_date_;
@@ -60,6 +62,7 @@ class ApcUpsDecodeTest : public ::testing::Test {
     ups_.set_on_battery(&on_battery_);
     ups_.set_replace_battery(&replace_battery_);
     ups_.set_status(&status_);
+    ups_.set_protocol_info(&protocol_info_);
     ups_.set_firmware_revision(&firmware_revision_);
     ups_.set_local_identifier(&local_identifier_);
     ups_.set_manufacture_date(&manufacture_date_);
@@ -179,6 +182,24 @@ TEST_F(ApcUpsDecodeTest, LocalIdentifier) {
 TEST_F(ApcUpsDecodeTest, ManufactureDate) {
   ups_.decode_and_publish(POLLING_LOWER_M, "11/17/98\r");
   EXPECT_EQ(manufacture_date_.state.substr(0, 8), "11/17/98");
+}
+
+TEST_F(ApcUpsDecodeTest, StringSanitizesAllBytes) {
+  for (int b = 0x00; b <= 0xFF; b++) {
+    if (b == 0x0D)
+      continue;  // \r is the response terminator, not part of the value
+    uint8_t buf[2] = {(uint8_t) b, 0x0D};
+    ups_.decode_and_publish_bytes(POLLING_LOWER_A, buf, sizeof(buf));
+    std::ostringstream ctx;
+    ctx << "byte 0x" << std::hex << b;
+    if (b == 0x00) {
+      EXPECT_EQ(protocol_info_.state, "") << ctx.str() << " (null) should yield empty string";
+    } else if (b >= 0x20 && b <= 0x7E) {
+      EXPECT_EQ(protocol_info_.state, std::string(1, (char) b)) << ctx.str() << " (printable) should pass unchanged";
+    } else {
+      EXPECT_EQ(protocol_info_.state, "?") << ctx.str() << " (non-printable) should become '?'";
+    }
+  }
 }
 
 }  // namespace esphome::apc_ups::testing

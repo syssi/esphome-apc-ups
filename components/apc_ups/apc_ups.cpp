@@ -212,6 +212,9 @@ void ApcUps::loop() {
   if (this->state_ == STATE_POLL_CHECKED) {
     char *tmp = reinterpret_cast<char *>(this->read_buffer_);
     tmp[strcspn(tmp, "\r\n")] = '\0';
+    for (char *p = tmp; *p; ++p)
+      if ((uint8_t) *p < 0x20 || (uint8_t) *p > 0x7E)
+        *p = '?';
     switch (this->used_polling_commands_[this->last_polling_command_].identifier) {
       case POLLING_Y:
         ESP_LOGD(TAG, "Decode Y");
@@ -239,7 +242,7 @@ void ApcUps::loop() {
       case POLLING_G:
         ESP_LOGD(TAG, "Decode G");
         // "G\r\n"
-        this->value_cause_of_last_transfer_ = this->read_buffer_[0];
+        this->value_cause_of_last_transfer_ = tmp;
         this->state_ = STATE_POLL_DECODED;
         break;
       case POLLING_L:
