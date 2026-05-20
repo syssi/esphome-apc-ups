@@ -32,6 +32,7 @@ class ApcUpsDecodeTest : public ::testing::Test {
   binary_sensor::BinarySensor on_line_;
   binary_sensor::BinarySensor on_battery_;
   binary_sensor::BinarySensor replace_battery_;
+  text_sensor::TextSensor status_;
   text_sensor::TextSensor firmware_revision_;
   text_sensor::TextSensor local_identifier_;
   text_sensor::TextSensor manufacture_date_;
@@ -58,6 +59,7 @@ class ApcUpsDecodeTest : public ::testing::Test {
     ups_.set_on_line(&on_line_);
     ups_.set_on_battery(&on_battery_);
     ups_.set_replace_battery(&replace_battery_);
+    ups_.set_status(&status_);
     ups_.set_firmware_revision(&firmware_revision_);
     ups_.set_local_identifier(&local_identifier_);
     ups_.set_manufacture_date(&manufacture_date_);
@@ -112,6 +114,16 @@ TEST_F(ApcUpsDecodeTest, StatusBitmaskOnLine) {
 TEST_F(ApcUpsDecodeTest, StatusBitmaskOnBatteryFalse) {
   ups_.decode_and_publish(POLLING_Q, "8F\r");
   EXPECT_FALSE(on_battery_.state);
+}
+
+TEST_F(ApcUpsDecodeTest, StatusTextOnline) {
+  ups_.decode_and_publish(POLLING_Q, "08\r");
+  EXPECT_EQ(status_.state, "Online");
+}
+
+TEST_F(ApcUpsDecodeTest, StatusTextOnBattery) {
+  ups_.decode_and_publish(POLLING_Q, "10\r");
+  EXPECT_EQ(status_.state, "On Battery");
 }
 
 TEST_F(ApcUpsDecodeTest, StatusBitmaskReplaceBattery) {

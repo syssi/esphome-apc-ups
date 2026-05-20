@@ -7,6 +7,7 @@ from .. import APC_UPS_COMPONENT_SCHEMA, CONF_APC_UPS_ID
 DEPENDENCIES = ["uart"]
 CODEOWNERS = ["@syssi"]
 
+CONF_STATUS = "status"
 CONF_CAUSE_OF_LAST_TRANSFER = "cause_of_last_transfer"
 CONF_PROTOCOL_INFO = "protocol_info"
 CONF_FIRMWARE_REVISION = "firmware_revision"
@@ -23,6 +24,7 @@ CONF_LINE_QUALITY = "line_quality"
 CONF_MODEL_NAME = "model_name"
 
 TYPES = [
+    CONF_STATUS,
     CONF_CAUSE_OF_LAST_TRANSFER,
     CONF_PROTOCOL_INFO,
     CONF_FIRMWARE_REVISION,

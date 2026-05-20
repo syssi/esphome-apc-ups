@@ -115,6 +115,14 @@ class ApcUps : public uart::UARTDevice, public PollingComponent {
   APC_UPS_BINARY_SENSOR(smart_boost, Q, Q)
   APC_UPS_BINARY_SENSOR(on_line, Q, Q)
   APC_UPS_BINARY_SENSOR(on_battery, Q, Q)
+ protected:
+  text_sensor::TextSensor *status_{};
+
+ public:
+  void set_status(text_sensor::TextSensor *s) {
+    this->status_ = s;
+    this->add_polling_command_("Q", POLLING_Q);
+  }
   APC_UPS_BINARY_SENSOR(output_overloaded, Q, Q)
   APC_UPS_BINARY_SENSOR(battery_low, Q, Q)
   APC_UPS_BINARY_SENSOR(replace_battery, Q, Q)
