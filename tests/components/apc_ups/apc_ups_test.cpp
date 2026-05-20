@@ -186,8 +186,8 @@ TEST_F(ApcUpsDecodeTest, ManufactureDate) {
 
 TEST_F(ApcUpsDecodeTest, StringSanitizesAllBytes) {
   for (int b = 0x00; b <= 0xFF; b++) {
-    if (b == 0x0D)
-      continue;  // \r is the response terminator, not part of the value
+    if (b == 0x0D || b == 0x0A)
+      continue;  // \r and \n are response terminators, stripped by strcspn before sanitization
     uint8_t buf[2] = {(uint8_t) b, 0x0D};
     ups_.decode_and_publish_bytes(POLLING_LOWER_A, buf, sizeof(buf));
     std::ostringstream ctx;

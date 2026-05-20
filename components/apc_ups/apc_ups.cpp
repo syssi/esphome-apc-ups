@@ -529,7 +529,7 @@ void ApcUps::queue_command_(const char *command, uint8_t length) {
     uint8_t testposition = (next_position + i) % COMMAND_QUEUE_LENGTH;
     if (command_queue_[testposition].empty()) {
       command_queue_[testposition] = command;
-      ESP_LOGD(TAG, "Command queued successfully: %s with length %u at position %d", command,
+      ESP_LOGD(TAG, "Command queued successfully: %s with length %zu at position %d", command,
                command_queue_[testposition].length(), testposition);
       return;
     }
