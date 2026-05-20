@@ -33,6 +33,7 @@ class ApcUpsDecodeTest : public ::testing::Test {
   binary_sensor::BinarySensor on_battery_;
   binary_sensor::BinarySensor replace_battery_;
   text_sensor::TextSensor status_;
+  text_sensor::TextSensor protocol_info_;
   text_sensor::TextSensor firmware_revision_;
   text_sensor::TextSensor local_identifier_;
   text_sensor::TextSensor manufacture_date_;
@@ -60,6 +61,7 @@ class ApcUpsDecodeTest : public ::testing::Test {
     ups_.set_on_battery(&on_battery_);
     ups_.set_replace_battery(&replace_battery_);
     ups_.set_status(&status_);
+    ups_.set_protocol_info(&protocol_info_);
     ups_.set_firmware_revision(&firmware_revision_);
     ups_.set_local_identifier(&local_identifier_);
     ups_.set_manufacture_date(&manufacture_date_);
@@ -179,6 +181,22 @@ TEST_F(ApcUpsDecodeTest, LocalIdentifier) {
 TEST_F(ApcUpsDecodeTest, ManufactureDate) {
   ups_.decode_and_publish(POLLING_LOWER_M, "11/17/98\r");
   EXPECT_EQ(manufacture_date_.state.substr(0, 8), "11/17/98");
+}
+
+TEST_F(ApcUpsDecodeTest, StringSanitizesAllBytes) {
+  for (int b = 0x00; b <= 0xFF; b++) {
+    if (b == 0x0D || b == 0x0A)
+      continue;  // \r and \n are response terminators, stripped by strcspn before sanitization
+    uint8_t buf[2] = {(uint8_t) b, 0x0D};
+    ups_.decode_and_publish_bytes(POLLING_LOWER_A, buf, sizeof(buf));
+    if (b == 0x00) {
+      EXPECT_EQ(protocol_info_.state, "") << "byte " << b << " (null) should yield empty string";
+    } else if (b >= 0x20 && b <= 0x7E) {
+      EXPECT_EQ(protocol_info_.state, std::string(1, (char) b)) << "byte " << b << " (printable) should pass unchanged";
+    } else {
+      EXPECT_EQ(protocol_info_.state, "?") << "byte " << b << " (non-printable) should become '?'";
+    }
+  }
 }
 
 }  // namespace esphome::apc_ups::testing

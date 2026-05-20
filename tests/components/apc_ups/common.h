@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <cstring>
 #include <string>
 #include "esphome/components/apc_ups/apc_ups.h"
@@ -18,6 +19,21 @@ class TestableApcUps : public ApcUps {
     state_ = STATE_POLL_CHECKED;
     loop();  // decode: STATE_POLL_CHECKED -> STATE_POLL_DECODED
     loop();  // publish: STATE_POLL_DECODED -> STATE_IDLE
+  }
+
+  void decode_and_publish_bytes(ENUMPollingCommand cmd, const uint8_t *data, size_t len) {
+    for (size_t i = 0; i < 41; i++) {
+      if (used_polling_commands_[i].length > 0 && used_polling_commands_[i].identifier == cmd) {
+        last_polling_command_ = i;
+        break;
+      }
+    }
+    size_t n = std::min(len, APC_UPS_READ_BUFFER_LENGTH - 1);
+    memcpy(read_buffer_, data, n);
+    read_buffer_[n] = 0;
+    state_ = STATE_POLL_CHECKED;
+    loop();
+    loop();
   }
 };
 
