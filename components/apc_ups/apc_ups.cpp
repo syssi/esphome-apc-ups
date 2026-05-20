@@ -128,12 +128,13 @@ void ApcUps::loop() {
         this->publish_state_(this->output_overloaded_, check_bit_(value_status_bitmask_, 32));
         this->publish_state_(this->battery_low_, check_bit_(value_status_bitmask_, 64));
         this->publish_state_(this->replace_battery_, check_bit_(value_status_bitmask_, 128));
-        if (check_bit_(value_status_bitmask_, 8))
+        if (check_bit_(value_status_bitmask_, 8)) {
           this->publish_state_(this->status_, "Online");
-        else if (check_bit_(value_status_bitmask_, 16))
+        } else if (check_bit_(value_status_bitmask_, 16)) {
           this->publish_state_(this->status_, "On Battery");
-        else
+        } else {
           this->publish_state_(this->status_, "Unknown");
+        }
         break;
       case POLLING_X:
         this->publish_state_(this->self_test_results_, value_self_test_results_);
@@ -462,8 +463,9 @@ void ApcUps::loop() {
     if (millis() - this->command_start_millis_ > esphome::apc_ups::ApcUps::COMMAND_TIMEOUT) {
       // command timeout
       ESP_LOGD(TAG, "timeout command to poll: %s", this->used_polling_commands_[this->last_polling_command_].command);
-      if (this->used_polling_commands_[this->last_polling_command_].identifier == POLLING_Q)
+      if (this->used_polling_commands_[this->last_polling_command_].identifier == POLLING_Q) {
         this->publish_state_(this->status_, "Unknown");
+      }
       this->state_ = STATE_IDLE;
     }
   }
