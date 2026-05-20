@@ -127,6 +127,8 @@ sensor:
 text_sensor:
   - platform: apc_ups
     apc_ups_id: ups0
+    status:
+      name: "status"
     cause_of_last_transfer:
       name: "cause of last transfer"
     # Could cause a connection reset of the Home Assistant API connection

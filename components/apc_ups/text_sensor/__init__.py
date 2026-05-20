@@ -1,6 +1,7 @@
 import esphome.codegen as cg
 from esphome.components import text_sensor
 import esphome.config_validation as cv
+from esphome.const import CONF_STATUS
 
 from .. import APC_UPS_COMPONENT_SCHEMA, CONF_APC_UPS_ID
 
@@ -23,6 +24,7 @@ CONF_LINE_QUALITY = "line_quality"
 CONF_MODEL_NAME = "model_name"
 
 TYPES = [
+    CONF_STATUS,
     CONF_CAUSE_OF_LAST_TRANSFER,
     CONF_PROTOCOL_INFO,
     CONF_FIRMWARE_REVISION,
