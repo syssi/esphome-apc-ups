@@ -1,13 +1,13 @@
 import esphome.codegen as cg
 from esphome.components import text_sensor
 import esphome.config_validation as cv
+from esphome.const import CONF_STATUS
 
 from .. import APC_UPS_COMPONENT_SCHEMA, CONF_APC_UPS_ID
 
 DEPENDENCIES = ["uart"]
 CODEOWNERS = ["@syssi"]
 
-CONF_STATUS = "status"
 CONF_CAUSE_OF_LAST_TRANSFER = "cause_of_last_transfer"
 CONF_PROTOCOL_INFO = "protocol_info"
 CONF_FIRMWARE_REVISION = "firmware_revision"
