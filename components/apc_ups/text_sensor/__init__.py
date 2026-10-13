@@ -5,6 +5,11 @@ from esphome.const import CONF_STATUS
 
 from .. import APC_UPS_COMPONENT_SCHEMA, CONF_APC_UPS_ID
 
+try:
+    from esphome.components.const import CONF_SERIAL_NUMBER
+except ImportError:  # ESPHome < 2026.11.0
+    CONF_SERIAL_NUMBER = "serial_number"
+
 DEPENDENCIES = ["uart"]
 CODEOWNERS = ["@syssi"]
 
@@ -14,7 +19,6 @@ CONF_FIRMWARE_REVISION = "firmware_revision"
 CONF_MANUFACTURE_DATE = "manufacture_date"
 CONF_LAST_BATTERY_CHANGE_DATE = "last_battery_change_date"
 CONF_LOCAL_IDENTIFIER = "local_identifier"
-CONF_SERIAL_NUMBER = "serial_number"
 CONF_OLD_FIRMWARE_VERSION = "old_firmware_version"
 CONF_MEASURE_UPC_FIRMWARE = "measure_upc_firmware"
 CONF_COPYRIGHT_NOTICE = "copyright_notice"
