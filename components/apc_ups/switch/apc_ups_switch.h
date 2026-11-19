@@ -2,16 +2,14 @@
 
 #include "../apc_ups.h"
 #include "esphome/components/switch/switch.h"
-#include "esphome/core/component.h"
 
 namespace esphome::apc_ups {
 class ApcUps;
-class ApcUpsSwitch : public switch_::Switch, public Component {
+class ApcUpsSwitch : public switch_::Switch {
  public:
   void set_parent(ApcUps *parent) { this->parent_ = parent; };
   void set_on_command(const std::string &command) { this->on_command_ = command; };
   void set_off_command(const std::string &command) { this->off_command_ = command; };
-  void dump_config() override;
 
  protected:
   void write_state(bool state) override;
