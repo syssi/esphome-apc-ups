@@ -600,6 +600,11 @@ void ApcUps::dump_config() {
   LOG_TEXT_SENSOR("", "Copyright Notice", this->copyright_notice_);
   LOG_TEXT_SENSOR("", "Line Quality", this->line_quality_);
   LOG_TEXT_SENSOR("", "Model Name", this->model_name_);
+
+  LOG_SWITCH("", "Front Panel Test", this->front_panel_test_);
+  LOG_SWITCH("", "Self Test", this->self_test_);
+  LOG_SWITCH("", "Start Runtime Calibration", this->start_runtime_calibration_);
+  LOG_SWITCH("", "Simulate Power Failure", this->simulate_power_failure_);
 }
 void ApcUps::update() {}
 

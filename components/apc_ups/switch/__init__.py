@@ -29,7 +29,7 @@ TYPES = {
     CONF_SIMULATE_POWER_FAILURE: ("U", None),
 }
 
-ApcUpsSwitch = apc_ups_ns.class_("ApcUpsSwitch", switch.Switch, cg.Component)
+ApcUpsSwitch = apc_ups_ns.class_("ApcUpsSwitch", switch.Switch)
 
 CONFIG_SCHEMA = APC_UPS_COMPONENT_SCHEMA.extend(
     {
@@ -71,7 +71,6 @@ async def to_code(config):
         if type in config:
             conf = config[type]
             var = await switch.new_switch(conf)
-            await cg.register_component(var, conf)
             cg.add(getattr(paren, f"set_{type}")(var))
             cg.add(var.set_parent(paren))
             cg.add(var.set_on_command(on))
